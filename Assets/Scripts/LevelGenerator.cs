@@ -47,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
         {
             shiftingNumber = Random.Range(shiftingNumber + 5, _platformCount / _shiftCount * i - 5);
 
-            int random = Random.Range(1, 4); //заменить на количество граней, Shiftangle тоже сделать вычисляемым для ровности всего уровня.
+            int random = Random.Range(1, 4); //заменить на количество граней, Shiftangle тоже сделать вычисляемым для ровности всего уровня на разных фигурах
             for (int j = shiftingNumber; j < _platformCount; j++)
                 transform.GetChild(j).Rotate(0, random * _shiftAngle, 0);
         }

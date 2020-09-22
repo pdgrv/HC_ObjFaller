@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TopPlatformFollower : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5;
     [SerializeField] private LevelGenerator _levelGenerator;
+    [SerializeField] private float _speed = 5;
 
     private float _offset;
 
