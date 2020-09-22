@@ -10,4 +10,9 @@ public class Ball : MonoBehaviour
     {
         transform.position += Vector3.down * _speed * Time.deltaTime;
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -12,7 +12,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _shiftCount;
     [SerializeField] private float _shiftAngle;
 
-    private void Start()
+    private Platform _currentPlatform;
+
+    private void Awake()
     {
         Clean();
         GenerateLevel();
@@ -28,22 +30,24 @@ public class LevelGenerator : MonoBehaviour
     private void GenerateLevel()
     {
         int random = Random.Range(0, _templates.Count);
+        _currentPlatform = _templates[random];
 
         for (int i = 0; i < _platformCount; i++)
         {
-            Instantiate(_templates[random], Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
+            Instantiate(_currentPlatform, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
         }
     }
 
+    [ContextMenu("RandomizeRotation")]
     private void RandomizeRotation()
     {
         int shiftingNumber = 0;
 
         for (int i = 1; i <= _shiftCount; i++)
         {
-            shiftingNumber = Random.Range(shiftingNumber + 10, _platformCount / _shiftCount * i - 5);
+            shiftingNumber = Random.Range(shiftingNumber + 5, _platformCount / _shiftCount * i - 5);
 
-            int random = Random.Range(1, 4);
+            int random = Random.Range(1, 4); //заменить на количество граней, Shiftangle тоже сделать вычисляемым для ровности всего уровня.
             for (int j = shiftingNumber; j < _platformCount; j++)
                 transform.GetChild(j).Rotate(0, random * _shiftAngle, 0);
         }
@@ -57,5 +61,10 @@ public class LevelGenerator : MonoBehaviour
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
         }
+    }
+
+    public Transform GetTopPlatformPosition()
+    {
+        return transform.GetChild(0);
     }
 }

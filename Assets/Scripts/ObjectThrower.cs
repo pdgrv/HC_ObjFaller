@@ -6,13 +6,12 @@ public class ObjectThrower : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
     [SerializeField] private float _delay;
-    [SerializeField] private LevelGenerator _levelGenerator;
 
     private float _elapsedTime;
 
     private void Start()
     {
-        _elapsedTime = _delay;
+        _elapsedTime = _delay;        
     }
 
     private void Update()
@@ -23,7 +22,7 @@ public class ObjectThrower : MonoBehaviour
         {
             Throw();
             _elapsedTime = 0;
-        }
+        }        
     }
 
     private void Throw()

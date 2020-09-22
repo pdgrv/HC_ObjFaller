@@ -19,7 +19,7 @@ public class PlatformPart : MonoBehaviour
     {
         if (other.TryGetComponent(out Ball ball))
         {
-            Destroy(ball.gameObject);
+            ball.Destroy();
 
             if (_isEnemy)
             {
