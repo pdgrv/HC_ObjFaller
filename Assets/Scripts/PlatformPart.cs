@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class PlatformPart : MonoBehaviour
 {
     [SerializeField] private Platform _platform;
@@ -11,8 +12,13 @@ public class PlatformPart : MonoBehaviour
     public bool IsEnemy => _isEnemy;
 
     private void Start()
-    {
+    {       
         _platform = GetComponentInParent<Platform>();
+    }
+
+    public void SetMaterial(Material mat)
+    {
+        GetComponent<MeshRenderer>().material = mat;
     }
 
     private void OnTriggerEnter(Collider other)

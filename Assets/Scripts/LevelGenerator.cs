@@ -10,9 +10,11 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _angleStep;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private int _shiftCount;
-    [SerializeField] private float _shiftAngle;
+    [SerializeField] private List<Material> _materialPool;
 
     private Platform _currentPlatform;
+    private List<Platform> _spawnedPlatforms = new List<Platform>();
+    private float _shiftAngle = 90;
 
     private void Awake()
     {
@@ -21,9 +23,19 @@ public class LevelGenerator : MonoBehaviour
         RandomizeRotation();
     }
 
+    private void Start()
+    {
+        _shiftAngle = 360 / _currentPlatform.PartsCount;
+    }
+
     private void Update()
     {
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
+    }
+
+    public Transform GetTopPlatformPosition()
+    {
+        return transform.GetChild(0);
     }
 
     [ContextMenu("GenerateLevel")]
@@ -34,7 +46,8 @@ public class LevelGenerator : MonoBehaviour
 
         for (int i = 0; i < _platformCount; i++)
         {
-            Instantiate(_currentPlatform, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
+            var newPlatform = Instantiate(_currentPlatform, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
+            _spawnedPlatforms.Add(newPlatform);
         }
     }
 
@@ -47,24 +60,29 @@ public class LevelGenerator : MonoBehaviour
         {
             shiftingNumber = Random.Range(shiftingNumber + 5, _platformCount / _shiftCount * i - 5);
 
-            int random = Random.Range(1, 4); //заменить на количество граней, Shiftangle тоже сделать вычисляемым для ровности всего уровня на разных фигурах
+            int random = Random.Range(1, _currentPlatform.PartsCount);
+            int randomMat = Random.Range(0, _materialPool.Count);
+
             for (int j = shiftingNumber; j < _platformCount; j++)
-                transform.GetChild(j).Rotate(0, random * _shiftAngle, 0);
+            {
+                //transform.GetChild(j).Rotate(0, random * _shiftAngle, 0);
+                _spawnedPlatforms[j].transform.Rotate(0, random * _shiftAngle, 0);
+                _spawnedPlatforms[j].SetMaterial(_materialPool[randomMat]);
+            }
         }
     }
 
     [ContextMenu("Clean")]
     private void Clean()
     {
-        int childCount = transform.childCount;
-        for (int i = childCount - 1; i >= 0; i--)
-        {
-            DestroyImmediate(transform.GetChild(i).gameObject);
-        }
-    }
+        //int childCount = transform.childCount;
+        //for (int i = childCount - 1; i >= 0; i--)
+        //{
+        //    DestroyImmediate(transform.GetChild(i).gameObject);
+        //}
+        foreach (Platform platform in _spawnedPlatforms)
+            DestroyImmediate(platform.gameObject);            
 
-    public Transform GetTopPlatformPosition()
-    {
-        return transform.GetChild(0);
+        _spawnedPlatforms.Clear();
     }
 }
