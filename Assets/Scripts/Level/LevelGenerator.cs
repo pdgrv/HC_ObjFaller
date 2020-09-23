@@ -12,20 +12,19 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _shiftCount;
     [SerializeField] private List<Material> _materialPool;
 
-    private Platform _currentPlatform;
+    private Platform _currentTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
     private float _shiftAngle = 90;
 
     private void Awake()
     {
-        Clean();
-        GenerateLevel();
-        RandomizeRotation();
+        StartLevel(1);
     }
+
 
     private void Start()
     {
-        _shiftAngle = 360 / _currentPlatform.PartsCount;
+        _shiftAngle = 360 / _currentTemplate.PartsCount;
     }
 
     private void Update()
@@ -35,20 +34,30 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform GetTopPlatformPosition()
     {
-        return transform.GetChild(0);
+        if (transform.childCount <= 0)
+            return null;
+        else
+            return transform.GetChild(0);
+    }
+
+    private void StartLevel(int levelNumber)
+    {
+        _currentTemplate = _templates[Random.Range(0, _templates.Count)];
+
+        Clean();
+        GenerateLevel(levelNumber);
     }
 
     [ContextMenu("GenerateLevel")]
-    private void GenerateLevel()
+    private void GenerateLevel(int levelNumber)
     {
-        int random = Random.Range(0, _templates.Count);
-        _currentPlatform = _templates[random];
-
         for (int i = 0; i < _platformCount; i++)
         {
-            var newPlatform = Instantiate(_currentPlatform, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
+            var newPlatform = Instantiate(_currentTemplate, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
             _spawnedPlatforms.Add(newPlatform);
         }
+
+        RandomizeRotation();
     }
 
     [ContextMenu("RandomizeRotation")]
@@ -60,7 +69,7 @@ public class LevelGenerator : MonoBehaviour
         {
             shiftingNumber = Random.Range(shiftingNumber + 5, _platformCount / _shiftCount * i - 5);
 
-            int random = Random.Range(1, _currentPlatform.PartsCount);
+            int random = Random.Range(1, _currentTemplate.PartsCount);
             int randomMat = Random.Range(0, _materialPool.Count);
 
             for (int j = shiftingNumber; j < _platformCount; j++)
@@ -81,7 +90,7 @@ public class LevelGenerator : MonoBehaviour
         //    DestroyImmediate(transform.GetChild(i).gameObject);
         //}
         foreach (Platform platform in _spawnedPlatforms)
-            DestroyImmediate(platform.gameObject);            
+            DestroyImmediate(platform.gameObject);
 
         _spawnedPlatforms.Clear();
     }

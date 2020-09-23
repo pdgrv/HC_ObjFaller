@@ -16,7 +16,7 @@ public class TopPlatformFollower : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y - _levelGenerator.GetTopPlatformPosition().position.y > _offset)
+        if (_levelGenerator.GetTopPlatformPosition() != null && transform.position.y - _levelGenerator.GetTopPlatformPosition().position.y > _offset)
         {
             transform.position += Vector3.down * _speed * Time.deltaTime;
         }
