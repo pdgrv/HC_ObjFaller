@@ -12,7 +12,7 @@ public class PlatformPart : MonoBehaviour
     public bool IsEnemy => _isEnemy;
 
     private void Start()
-    {       
+    {
         _platform = GetComponentInParent<Platform>();
     }
 
@@ -31,13 +31,12 @@ public class PlatformPart : MonoBehaviour
             {
                 if (--_durable <= 0)
                 {
-                    Debug.Log("Вы проиграли.");
-                    Time.timeScale = 0;
+                    _platform.GameOver();                    
                 }
                 return;
             }
 
-            _platform.Destroy();
+            _platform.Remove();
         }
     }
 }
