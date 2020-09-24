@@ -21,7 +21,6 @@ public class LevelGenerator : MonoBehaviour
         StartLevel(1);
     }
 
-
     private void Start()
     {
         _shiftAngle = 360 / _currentTemplate.PartsCount;
@@ -42,15 +41,15 @@ public class LevelGenerator : MonoBehaviour
 
     private void StartLevel(int levelNumber)
     {
-        _currentTemplate = _templates[Random.Range(0, _templates.Count)];
-
         Clean();
-        GenerateLevel(levelNumber);
+        GenerateLevel();
     }
 
     [ContextMenu("GenerateLevel")]
-    private void GenerateLevel(int levelNumber)
+    private void GenerateLevel()
     {
+        _currentTemplate = _templates[Random.Range(0, _templates.Count)];
+
         for (int i = 0; i < _platformCount; i++)
         {
             var newPlatform = Instantiate(_currentTemplate, Vector3.down * _platformHeight * i, Quaternion.Euler(0, _angleStep * i, 0), transform);
