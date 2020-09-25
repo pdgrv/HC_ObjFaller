@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopPlatformFollower : MonoBehaviour
+public class PlatformFollower : MonoBehaviour
 {
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private float _speed = 5;

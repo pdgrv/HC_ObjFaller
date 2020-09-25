@@ -6,7 +6,16 @@ public class Platform : MonoBehaviour
 {
     [SerializeField] private List<PlatformPart> _platformParts;
 
+    private LevelGenerator _levelGenerator;
+    private GameManager _gameManager;
+
     public int PartsCount => _platformParts.Count;
+
+    public void Init(LevelGenerator levelGenerator, GameManager gameManager)
+    {
+        _levelGenerator = levelGenerator;
+        _gameManager = gameManager;
+    }
 
     public void SetMaterial(Material mat)
     {
@@ -17,8 +26,13 @@ public class Platform : MonoBehaviour
         }
     }
 
-    public void Destroy()
+    public void Remove()
     {
-        Destroy(gameObject);
+        _levelGenerator.RemovePlatform(this);
+    }
+
+    public void GameOver()
+    {
+        _gameManager.GameOver();
     }
 }
