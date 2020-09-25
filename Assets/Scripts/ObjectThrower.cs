@@ -34,7 +34,7 @@ public class ObjectThrower : MonoBehaviour
 
     public void Stop()
     {
-        _canThrow = false;
+        _canThrow = false;//выключение включеных шаров
     }
 
     private void Throw()

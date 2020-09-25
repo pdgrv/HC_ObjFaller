@@ -2562,7 +2562,7 @@ MonoBehaviour:
   _platformCount: 50
   _platformHeight: 0.6
   _angleStep: 4
-  _rotateSpeed: -45
+  _rotateSpeed: -50
   _shiftCount: 3
   _materialPool:
   - {fileID: 2100000, guid: fa21d1503fd7e994095c73adf12cdc82, type: 2}
