@@ -31,7 +31,7 @@ public class PlatformPart : MonoBehaviour
             {
                 if (--_durable <= 0)
                 {
-                    _platform.GameOver();                    
+                    _platform.GameOver();
                 }
                 return;
             }

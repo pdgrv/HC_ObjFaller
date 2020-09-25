@@ -27,7 +27,7 @@ public class Platform : MonoBehaviour
     }
 
     public void Remove()
-    {        
+    {
         _levelGenerator.RemovePlatform(this);
     }
 

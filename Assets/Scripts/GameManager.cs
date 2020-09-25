@@ -13,11 +13,16 @@ public class GameManager : MonoBehaviour
     private int _currentLevel = 1;
     private int _percentLevelPassed;
 
-    public event UnityAction<int> LevelChanged;
+    public event UnityAction<int> LevelChanged; // мб можно избавиться от ээтого события 
 
-    private void Start()
+    private void Awake()
     {
+        LoadProgress();
+        if (_currentLevel == 0)
+            _currentLevel++;
+
         LevelChanged?.Invoke(_currentLevel);
+        _levelGenerator.StartLevel(_currentLevel);
     }
 
     private void OnEnable()
@@ -29,10 +34,26 @@ public class GameManager : MonoBehaviour
     {
         _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;
     }
-    private void CompleteLevel(bool isWin)
+
+    public void RestartLevel()
     {
-        _objectThrower.Stop();
-        _menu.CompleteLevel(isWin, _currentLevel, _percentLevelPassed);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        _currentLevel++;
+        LevelChanged?.Invoke(_currentLevel);
+
+        SaveProgress();
+
+        RestartLevel();
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Вы проиграли.");
+        CompleteLevel(false);
     }
 
     private void OnPlatformCountChanged(int value, int maxValue)
@@ -45,20 +66,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    private void CompleteLevel(bool isWin)
     {
-        Debug.Log("Вы проиграли.");
-        CompleteLevel(false);
+        _objectThrower.Stop();
+        _menu.CompleteLevel(isWin, _currentLevel, _percentLevelPassed);
+        SaveProgress();
     }
 
-    public void NextLevel()
+    private void SaveProgress()
     {
-        _currentLevel++;
-        LevelChanged?.Invoke(_currentLevel);
+        PlayerPrefs.SetInt("Level", _currentLevel);
     }
 
-    public void RestartLevel()
+    private void LoadProgress()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _currentLevel = PlayerPrefs.GetInt("Level", 1);
+    }
+
+    [ContextMenu("DeleteSaves")]
+    private void DeleteSaves()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

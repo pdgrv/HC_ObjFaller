@@ -15,7 +15,7 @@ public class ProgressSlider : MonoBehaviour
 
     private void OnDisable()
     {
-        _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;        
+        _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;
     }
 
     private void OnPlatformCountChanged(int value, int maxValue)

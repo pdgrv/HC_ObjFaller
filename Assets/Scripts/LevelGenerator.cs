@@ -28,11 +28,6 @@ public class LevelGenerator : MonoBehaviour
 
     public event UnityAction<int, int> PlatformCountChanged;
 
-    private void Awake()
-    {
-        StartLevel(1);
-    }
-
     private void Update()
     {
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
