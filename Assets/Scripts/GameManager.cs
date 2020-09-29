@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObjectThrower _objectThrower;
 
     private int _currentLevel = 1;
-    private int _percentLevelPassed;
+    private int _percentOfLevelPassed;
 
     public event UnityAction<int> LevelChanged; // мб можно избавиться от ээтого события 
 
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPlatformCountChanged(int value, int maxValue)
     {
-        _percentLevelPassed = (int)((float)value / maxValue * 100);
+        _percentOfLevelPassed = (int)((float)value / maxValue * 100);
 
         if (value >= maxValue)
         {
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     private void CompleteLevel(bool isWin)
     {
         _objectThrower.Stop();
-        _menu.CompleteLevel(isWin, _currentLevel, _percentLevelPassed);
+        _menu.CompleteLevel(isWin, _currentLevel, _percentOfLevelPassed);
         SaveProgress();
     }
 
