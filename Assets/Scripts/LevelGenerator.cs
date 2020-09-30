@@ -7,9 +7,11 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private List<Platform> _templates;
     [SerializeField] private int _platformCount;
+    [SerializeField] private int _countIncreasing;
     [SerializeField] private float _platformHeight;
     [SerializeField] private float _angleStep;
     [SerializeField] private float _rotateSpeed;
+    [SerializeField] private float _speedIncreasing;
     [SerializeField] private int _shiftCount;
     [SerializeField] private List<Material> _materialPool;
     [SerializeField] private GameManager _gameManager;
@@ -44,8 +46,15 @@ public class LevelGenerator : MonoBehaviour
     public void StartLevel(int levelNumber)
     {
         Clean();
+        RecalculateParametrs(levelNumber);
         GenerateLevel();
         RandomizeLevel();
+    }
+
+    private void RecalculateParametrs(int levelNumber)
+    {
+        _platformCount += levelNumber * _countIncreasing;
+        _rotateSpeed += levelNumber * _speedIncreasing;
     }
 
     [ContextMenu("GenerateLevel")]
@@ -85,7 +94,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 randomShiftStep = Random.Range(1, _currentTemplate.PartsCount);
                 randomMat = Random.Range(0, _materialPool.Count);
-            } while (randomShiftStep == prevShiftStep && randomMat == prevMat);
+            } while (randomShiftStep == prevShiftStep || randomMat == prevMat);
 
             for (int j = shiftingNumbers[i]; j < shiftingNumbers[i + 1]; j++)
             {

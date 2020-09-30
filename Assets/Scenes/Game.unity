@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
-  _speed: 5
+  _speed: 4
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,9 +2710,11 @@ MonoBehaviour:
   _templates:
   - {fileID: 1944906939518331026, guid: 1347016e0872fba41adf7302288175b4, type: 3}
   _platformCount: 50
+  _countIncreasing: 3
   _platformHeight: 0.45
   _angleStep: 4
   _rotateSpeed: -45
+  _speedIncreasing: -1
   _shiftCount: 3
   _materialPool:
   - {fileID: 2100000, guid: fa21d1503fd7e994095c73adf12cdc82, type: 2}
