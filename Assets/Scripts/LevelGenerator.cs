@@ -76,16 +76,25 @@ public class LevelGenerator : MonoBehaviour
 
         shiftingNumbers.Add(_spawnedPlatforms.Count);
 
+        int prevShiftStep = -1, prevMat = -1;
+
         for (int i = 0; i < shiftingNumbers.Count - 1; i++)
         {
-            int randomShiftStep = Random.Range(1, _currentTemplate.PartsCount);
-            int randomMat = Random.Range(0, _materialPool.Count);
+            int randomShiftStep, randomMat;
+            do
+            {
+                randomShiftStep = Random.Range(1, _currentTemplate.PartsCount);
+                randomMat = Random.Range(0, _materialPool.Count);
+            } while (randomShiftStep == prevShiftStep && randomMat == prevMat);
 
             for (int j = shiftingNumbers[i]; j < shiftingNumbers[i + 1]; j++)
             {
                 _spawnedPlatforms[j].transform.Rotate(0, randomShiftStep * _shiftAngle, 0);
                 _spawnedPlatforms[j].SetMaterial(_materialPool[randomMat]);
             }
+
+            prevShiftStep = randomShiftStep;
+            prevMat = randomMat;
         }
     }
 
