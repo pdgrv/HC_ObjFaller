@@ -27,7 +27,7 @@ public class LevelCompletePanel : MonoBehaviour
         }
         else
         {
-            _levelProgressLabel.text = percentOfLevelPassed.ToString() + '%';
+            _levelProgressLabel.text = "FAIL\n" + percentOfLevelPassed.ToString() + '%';
             _nextButton.gameObject.SetActive(false);
             _rewardButton.gameObject.SetActive(false);
 
