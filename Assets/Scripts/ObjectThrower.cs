@@ -6,6 +6,7 @@ public class ObjectThrower : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
     [SerializeField] private float _delay;
+    [SerializeField] private ThrowerTarget _target;
 
     private List<Ball> _ballPool; // сделать throw через пул
 
@@ -34,7 +35,7 @@ public class ObjectThrower : MonoBehaviour
 
     public void Stop()
     {
-        _canThrow = false;//выключение включеных шаров
+        _canThrow = false;//Добавить удаление уже вылетевших после стопа шаров
     }
 
     private void Throw()
