@@ -52,7 +52,7 @@ MeshRenderer:
   m_GameObject: {fileID: 6182911163213114684}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -93,7 +93,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2381890483179193753, guid: a1dc7d45cac0e694f99b70e164cc6f87, type: 3}
 --- !u!54 &4600310236395845914
@@ -124,4 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128a01ea41a35e54e8e1c2f4e738dd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
+  _speed: 7.5
+  _rotateSpeed: 150

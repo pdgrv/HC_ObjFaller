@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Menu _menu;
     [SerializeField] private ObjectThrower _objectThrower;
 
+    [SerializeField] private Animator _girlAnimator;
+
     private int _currentLevel = 1;
     private int _percentOfLevelPassed;
 
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Вы проиграли.");
-        CompleteLevel(false);
+        LoseLevel();
     }
 
     private void OnPlatformCountChanged(int value, int maxValue)
@@ -62,15 +64,23 @@ public class GameManager : MonoBehaviour
 
         if (value >= maxValue)
         {
-            CompleteLevel(true);
+            WinLevel();
         }
     }
 
-    private void CompleteLevel(bool isWin)
+    private void LoseLevel()
     {
         _objectThrower.Stop();
-        _menu.CompleteLevel(isWin, _currentLevel, _percentOfLevelPassed);
+        _menu.CompleteLevel(false, _currentLevel, _percentOfLevelPassed);
+    }
+
+    private void WinLevel()
+    {
+        _objectThrower.Stop();
         SaveProgress();
+
+        _girlAnimator.SetTrigger("RollOver"); //123123123123123123123123
+        StartCoroutine(WaitAnim());
     }
 
     private void SaveProgress()
@@ -87,5 +97,12 @@ public class GameManager : MonoBehaviour
     private void DeleteSaves()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    private IEnumerator WaitAnim()
+    {
+        yield return new WaitForSeconds(5);
+
+        _menu.CompleteLevel(true, _currentLevel, _percentOfLevelPassed);
     }
 }
