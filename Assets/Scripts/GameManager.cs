@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private Menu _menu;
     [SerializeField] private ObjectThrower _objectThrower;
+    [SerializeField] private RoomPlacer _roomPlacer;
 
     [SerializeField] private Animator _girlAnimator;
 
@@ -20,11 +21,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         LoadProgress();
-        if (_currentLevel == 0)
-            _currentLevel++;
+        //if (_currentLevel == 0)
+        //    _currentLevel++;
 
         LevelChanged?.Invoke(_currentLevel);
         _levelGenerator.StartLevel(_currentLevel);
+        //_roomPlacer.PlaceRoom();
     }
 
     private void OnEnable()
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        _currentLevel++;
+        _currentLevel++; //убрать это отсюда - если не нажать NEXT уровень не засчитается
         LevelChanged?.Invoke(_currentLevel);
 
         SaveProgress();
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitAnim()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
 
         _menu.CompleteLevel(true, _currentLevel, _percentOfLevelPassed);
     }

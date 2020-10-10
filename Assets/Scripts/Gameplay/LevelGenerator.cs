@@ -28,6 +28,14 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    public float PlatformsHeight
+    {
+        get
+        {
+            return _platformCount * _platformHeight;
+        }
+    }
+
     public event UnityAction<int, int> PlatformCountChanged;
 
     private void Update()
@@ -35,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
     }
 
-    public Transform GetTopPlatformPosition()
+    public Transform TryGetTopPlatformPosition()
     {
         if (transform.childCount <= 0)
             return null;

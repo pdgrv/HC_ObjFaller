@@ -11,12 +11,12 @@ public class PlatformFollower : MonoBehaviour
 
     private void Start()
     {
-        _offset = transform.position.y - _levelGenerator.GetTopPlatformPosition().position.y;
+        _offset = transform.position.y - _levelGenerator.TryGetTopPlatformPosition().position.y;
     }
 
     private void Update()
     {
-        if (_levelGenerator.GetTopPlatformPosition() != null && transform.position.y - _levelGenerator.GetTopPlatformPosition().position.y > _offset)
+        if (_levelGenerator.TryGetTopPlatformPosition() != null && transform.position.y - _levelGenerator.TryGetTopPlatformPosition().position.y > _offset)
         {
             transform.position += Vector3.down * _speed * Time.deltaTime;
         }
