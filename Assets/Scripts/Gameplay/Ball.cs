@@ -5,13 +5,16 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _rotateSpeed;
+    [SerializeField] private float _maxRotateSpeed;
+
+    private float _rotateSpeed;
 
     private Transform _target;
 
     private void Start()
     {
-        transform.Rotate(Vector3.forward, Random.Range(0, 180));    
+        transform.Rotate(Vector3.forward, Random.Range(0, 180));
+        _rotateSpeed = Random.Range(_maxRotateSpeed / 2, _maxRotateSpeed);
     }
 
     private void Update()
