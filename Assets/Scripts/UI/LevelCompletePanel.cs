@@ -13,7 +13,7 @@ public class LevelCompletePanel : MonoBehaviour
     [SerializeField] private Button _rewardButton;
     [SerializeField] private Button _continueButton;
 
-    public void UpdateInfo(bool IsWin, int currentLevel, int percentOfLevelPassed)
+    public void UpdateInfo(bool IsWin, int currentLevel, int percentOfLevelPassed = 0)
     {
         _levelLabel.text = currentLevel.ToString();
         if (IsWin)

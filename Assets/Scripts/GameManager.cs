@@ -9,9 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private Menu _menu;
     [SerializeField] private ObjectThrower _objectThrower;
-    [SerializeField] private RoomPlacer _roomPlacer;
-
-    [SerializeField] private Animator _girlAnimator;
+    [SerializeField] private MovieProducer _movieProducer;
 
     private int _currentLevel = 1;
     private int _percentOfLevelPassed;
@@ -21,12 +19,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         LoadProgress();
-        //if (_currentLevel == 0)
-        //    _currentLevel++;
 
         LevelChanged?.Invoke(_currentLevel);
         _levelGenerator.StartLevel(_currentLevel);
-        //_roomPlacer.PlaceRoom();
     }
 
     private void OnEnable()
@@ -46,11 +41,6 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        _currentLevel++; //убрать это отсюда - если не нажать NEXT уровень не засчитается
-        LevelChanged?.Invoke(_currentLevel);
-
-        SaveProgress();
-
         RestartLevel();
     }
 
@@ -79,10 +69,14 @@ public class GameManager : MonoBehaviour
     private void WinLevel()
     {
         _objectThrower.Stop();
-        SaveProgress();
+        _menu.HideProgressBar();
 
-        _girlAnimator.SetTrigger("RollOver"); //123123123123123123123123
-        StartCoroutine(WaitAnim());
+        _currentLevel++;
+        SaveProgress();
+        LevelChanged?.Invoke(_currentLevel);
+
+        _movieProducer.StartMovie();
+        StartCoroutine(WaitMovieEnd());
     }
 
     private void SaveProgress()
@@ -101,10 +95,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    private IEnumerator WaitAnim()
+    private IEnumerator WaitMovieEnd()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitUntil(() => _movieProducer.IsMovieEnded);
 
-        _menu.CompleteLevel(true, _currentLevel, _percentOfLevelPassed);
+        _menu.CompleteLevel(true, _currentLevel - 1);
     }
 }

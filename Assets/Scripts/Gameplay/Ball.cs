@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        transform.Rotate(Vector3.forward, Random.Range(0, 180));
+        transform.Rotate(Vector3.forward, Random.Range(0, 360));
         _rotateSpeed = Random.Range(_maxRotateSpeed / 2, _maxRotateSpeed);
     }
 
