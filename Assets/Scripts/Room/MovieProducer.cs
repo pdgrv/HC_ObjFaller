@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class MovieProducer : MonoBehaviour
 {
+    [SerializeField] private FallingStar _fallingStar;
     [SerializeField] private Animator _cameraAnimator;
     [SerializeField] private Animator _girlAnimator;
-    [SerializeField] private float _girlAnimDelay;
     [SerializeField] private Animation _mainLightAnimation;
 
+    [SerializeField] private float _cameraMoveDelay;
+    [SerializeField] private float _girlAnimDelay;
     [SerializeField] private float _remainingMovieTime;
+
 
     private Coroutine _movieJob;
 
@@ -22,6 +25,9 @@ public class MovieProducer : MonoBehaviour
 
     private IEnumerator Movie()
     {
+        _fallingStar.StartFalling();
+        yield return new WaitForSeconds(_cameraMoveDelay);
+
         _cameraAnimator.SetTrigger("MoveCamera");
         yield return new WaitForSeconds(_girlAnimDelay);
 
