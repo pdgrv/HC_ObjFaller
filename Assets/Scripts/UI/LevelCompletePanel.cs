@@ -8,10 +8,9 @@ public class LevelCompletePanel : MonoBehaviour
 {
     [SerializeField] private TMP_Text _levelLabel;
     [SerializeField] private TMP_Text _levelProgressLabel;
-    [SerializeField] private Button _nextButton;
-    [SerializeField] private Button _replayButton;
-    [SerializeField] private Button _rewardButton;
-    [SerializeField] private Button _continueButton;
+    [SerializeField] private TMP_Text _rewardAmount;
+    [SerializeField] private GameObject _winOptions;
+    [SerializeField] private GameObject _loseOptions;
 
     public void UpdateInfo(bool IsWin, int currentLevel, int percentOfLevelPassed = 0)
     {
@@ -19,20 +18,17 @@ public class LevelCompletePanel : MonoBehaviour
         if (IsWin)
         {
             _levelProgressLabel.text = "WIN!";
-            _nextButton.gameObject.SetActive(true);
-            _rewardButton.gameObject.SetActive(true);
+            //_rewardAmount.text = 
 
-            _replayButton.gameObject.SetActive(false);
-            _continueButton.gameObject.SetActive(false);
+            _winOptions.SetActive(true);
+            _loseOptions.SetActive(false);
         }
         else
         {
             _levelProgressLabel.text = "FAIL\n" + percentOfLevelPassed.ToString() + '%';
-            _nextButton.gameObject.SetActive(false);
-            _rewardButton.gameObject.SetActive(false);
 
-            _replayButton.gameObject.SetActive(true);
-            _continueButton.gameObject.SetActive(true);
+            _winOptions.SetActive(false);
+            _loseOptions.SetActive(true);
         }
     }
 }

@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
 
     public void CompleteLevel(bool IsWin, int currentLevel, int percentOfLevelPassed = 0)
     {
-        _progressBar.SetActive(false);
+        HideProgressBar();
         _levelCompletePanel.gameObject.SetActive(true);
 
         _levelCompletePanel.UpdateInfo(IsWin, currentLevel, percentOfLevelPassed);
