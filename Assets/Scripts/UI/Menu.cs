@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private GameObject _progressBar;
     [SerializeField] private LevelCompletePanel _levelCompletePanel;
 
