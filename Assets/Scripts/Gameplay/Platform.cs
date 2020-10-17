@@ -5,6 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField] private List<PlatformPart> _platformParts;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     private LevelGenerator _levelGenerator;
     private GameManager _gameManager;
@@ -22,13 +23,22 @@ public class Platform : MonoBehaviour
         foreach (PlatformPart part in _platformParts)
         {
             if (!part.IsEnemy)
+            {
                 part.SetMaterial(mat);
+
+                var particleMain = _particleSystem.main;
+                particleMain.startColor = mat.color;
+                _particleSystem.transform.parent = null;
+            }
         }
     }
 
-    public void Remove()
+    public void Destroy()
     {
         _levelGenerator.RemovePlatform(this);
+        Destroy(gameObject);
+
+        _particleSystem.Play();
     }
 
     public void GameOver()

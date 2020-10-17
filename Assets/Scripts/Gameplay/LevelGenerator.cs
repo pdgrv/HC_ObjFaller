@@ -45,10 +45,15 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform TryGetTopPlatformPosition()
     {
-        if (transform.childCount <= 0)
+        //if (transform.childCount <= 0)
+        //    return null;
+        //else
+        //    return transform.GetChild(0);
+
+        if (_spawnedPlatforms.Count <= 0)
             return null;
         else
-            return transform.GetChild(0);
+            return _spawnedPlatforms[0].transform;
     }
 
     public void StartLevel(int levelNumber)
@@ -127,7 +132,6 @@ public class LevelGenerator : MonoBehaviour
     public void RemovePlatform(Platform platform)
     {
         _spawnedPlatforms.Remove(platform);
-        Destroy(platform.gameObject);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
     }

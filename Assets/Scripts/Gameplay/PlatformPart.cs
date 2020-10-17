@@ -36,7 +36,7 @@ public class PlatformPart : MonoBehaviour
                 return;
             }
 
-            _platform.Remove();
+            _platform.Destroy();
         }
     }
 }
