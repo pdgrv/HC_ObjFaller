@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class PlayerMoney : MonoBehaviour
 {
-    private int _money;
+    public int _currentMoney;
 
     public event UnityAction<int> MoneyChanged;
 
     private void Start()
     {
         LoadProgress();
-        MoneyChanged?.Invoke(_money);
+        MoneyChanged?.Invoke(_currentMoney);
     }
 
     public void AddMoney(int value)
@@ -22,7 +22,7 @@ public class PlayerMoney : MonoBehaviour
 
     public bool TryRemoveMoney(int value)
     {
-        if (_money >= value)
+        if (_currentMoney >= value)
         {
             ChangeMoneyAmount(-value);
             return true;
@@ -33,18 +33,18 @@ public class PlayerMoney : MonoBehaviour
 
     private void ChangeMoneyAmount(int value)
     {
-        _money += value;
-        MoneyChanged?.Invoke(_money);
+        _currentMoney += value;
+        MoneyChanged?.Invoke(_currentMoney);
         SaveProgress();
     }
 
     private void SaveProgress()
     {
-        PlayerPrefs.SetInt("Money", _money);
+        PlayerPrefs.SetInt("Money", _currentMoney);
     }
 
     private void LoadProgress()
     {
-        _money = PlayerPrefs.GetInt("Money", 0);
+        _currentMoney = PlayerPrefs.GetInt("Money", 0);
     }
 }

@@ -10,9 +10,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Menu _menu;
     [SerializeField] private ObjectThrower _objectThrower;
     [SerializeField] private MovieProducer _movieProducer;
+    [SerializeField] private PlayerMoney _playerMoney;
+    [SerializeField] private int _rewardForPlatform;
 
     private int _currentLevel = 1;
     private int _percentOfLevelPassed;
+    private int _platformsCount;
+
+    private int _totalReward
+    { 
+        get
+        {
+            return _platformsCount * _rewardForPlatform;
+        } 
+    }
 
     public event UnityAction<int> LevelChanged; // мб можно избавиться от ээтого события 
 
@@ -53,6 +64,7 @@ public class GameManager : MonoBehaviour
     private void OnPlatformCountChanged(int value, int maxValue)
     {
         _percentOfLevelPassed = (int)((float)value / maxValue * 100);
+        _platformsCount = maxValue;
 
         if (value >= maxValue)
         {
@@ -63,13 +75,14 @@ public class GameManager : MonoBehaviour
     private void LoseLevel()
     {
         _objectThrower.Stop();
-        _menu.CompleteLevel(false, _currentLevel, _percentOfLevelPassed);
+        _menu.CompleteLevel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
     }
 
     private void WinLevel()
     {
         _objectThrower.Stop();
         _menu.HideProgressBar();
+        _playerMoney.AddMoney(_totalReward);
 
         _currentLevel++;
         SaveProgress();
@@ -99,6 +112,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitUntil(() => _movieProducer.IsMovieEnded);
 
-        _menu.CompleteLevel(true, _currentLevel - 1);
+        _menu.CompleteLevel(true, _currentLevel - 1, rewardAmount: _totalReward);
     }
 }
