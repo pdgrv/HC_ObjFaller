@@ -40,7 +40,10 @@ public class ObjectThrower : MonoBehaviour
 
     public void Stop()
     {
-        _canThrow = false;//Добавить удаление уже вылетевших после стопа шаров
+        _canThrow = false;
+
+        foreach (ThrowedObject throwedObject in _objectPool)
+            throwedObject.gameObject.SetActive(false);
     }
 
     private void Initialize()
