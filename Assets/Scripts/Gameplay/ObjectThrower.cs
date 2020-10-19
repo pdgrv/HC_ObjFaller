@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectThrower : MonoBehaviour
 {
-    [SerializeField] private Ball _ball;
-    [SerializeField] private float _delay;
-    [SerializeField] private Transform _target;
+    [SerializeField] private ThrowedObject _object;
+    [SerializeField] private GameObject _container;
+    [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
+    [SerializeField] private Transform _target;
+    [SerializeField] private float _delay;
 
-    private List<Ball> _ballPool; // сделать throw через пул
+    private List<ThrowedObject> _objectPool = new List<ThrowedObject>();
 
     private bool _canThrow = true;
     private float _elapsedTime;
 
-
     private void Start()
     {
         _elapsedTime = _delay;
+
+        Initialize();
     }
 
     private void Update()
@@ -39,12 +43,26 @@ public class ObjectThrower : MonoBehaviour
         _canThrow = false;//Добавить удаление уже вылетевших после стопа шаров
     }
 
+    private void Initialize()
+    {
+        for (int i =0; i< _poolCapacity; i++)
+        {
+            ThrowedObject newObject = Instantiate(_object, _container.transform);
+            newObject.gameObject.SetActive(false);
+
+            newObject.Init(_target);
+            _objectPool.Add(newObject);
+        }
+    }
+
     private void Throw()
     {
         Vector3 spawnPoint = RandomPointInArea(_spawnArea);
-        Ball newBall = Instantiate(_ball, spawnPoint, Quaternion.identity, transform);
-
-        newBall.Init(_target);
+        ThrowedObject throwedObject = _objectPool.First(p => p.gameObject.activeSelf == false);
+       
+        throwedObject.transform.position = spawnPoint;
+        throwedObject.transform.Rotate(Vector3.forward, Random.Range(0, 360));
+        throwedObject.gameObject.SetActive(true);
     }
 
     private Vector3 RandomPointInArea(Transform area)

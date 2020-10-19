@@ -23,9 +23,9 @@ public class PlatformPart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Ball ball))
+        if (other.TryGetComponent(out ThrowedObject throwedObject))
         {
-            ball?.Destroy();
+            throwedObject?.Die();
 
             if (_isEnemy)
             {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1841577670064090805}
   - component: {fileID: 5649307690165151419}
   - component: {fileID: 4600310236395845914}
-  - component: {fileID: 5905851268751547686}
+  - component: {fileID: 4307755056633455944}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5905851268751547686
+--- !u!114 &4307755056633455944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128a01ea41a35e54e8e1c2f4e738dd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
-  _maxRotateSpeed: 150
+  Speed: 8
+  _maxRotateSpeed: 180
