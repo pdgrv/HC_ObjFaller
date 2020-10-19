@@ -62,9 +62,12 @@ public class ObjectThrower : MonoBehaviour
     {
         Vector3 spawnPoint = RandomPointInArea(_spawnArea);
         ThrowedObject throwedObject = _objectPool.First(p => p.gameObject.activeSelf == false);
-       
+        if (throwedObject == null)
+            Debug.Log("no free object in objectpool");
+
         throwedObject.transform.position = spawnPoint;
         throwedObject.transform.Rotate(Vector3.forward, Random.Range(0, 360));
+
         throwedObject.gameObject.SetActive(true);
     }
 
