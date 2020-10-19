@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartLabel : MonoBehaviour
+public class StartingMenu : MonoBehaviour
 {
     private void Update()
     {
