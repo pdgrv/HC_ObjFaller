@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectThrower : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class ObjectThrower : MonoBehaviour
 
         _elapsedTime += Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && _elapsedTime >= _delay)
+        if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject())
         {
             Throw();
             _elapsedTime = 0;
