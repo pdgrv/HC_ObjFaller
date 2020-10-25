@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerMoney : MonoBehaviour
 {
-    public int _currentMoney;
+    [SerializeField] private int _currentMoney;
 
     public event UnityAction<int> MoneyChanged;
 

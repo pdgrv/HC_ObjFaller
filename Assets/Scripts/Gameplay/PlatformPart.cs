@@ -25,7 +25,7 @@ public class PlatformPart : MonoBehaviour
     {
         if (other.TryGetComponent(out ThrowedObject throwedObject))
         {
-            throwedObject?.Die();
+            throwedObject.Die();
 
             if (_isEnemy)
             {

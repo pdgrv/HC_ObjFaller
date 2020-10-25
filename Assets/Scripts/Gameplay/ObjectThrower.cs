@@ -39,6 +39,14 @@ public class ObjectThrower : MonoBehaviour
         }
     }
 
+    public void SetThrowedObject(ThrowedObject template)
+    {
+        _object = template;
+
+        CleanPool();
+        Initialize();
+    }
+
     public void Stop()
     {
         _canThrow = false;
@@ -49,7 +57,7 @@ public class ObjectThrower : MonoBehaviour
 
     private void Initialize()
     {
-        for (int i =0; i< _poolCapacity; i++)
+        for (int i = 0; i < _poolCapacity; i++)
         {
             ThrowedObject newObject = Instantiate(_object, _container.transform);
             newObject.gameObject.SetActive(false);
@@ -57,6 +65,15 @@ public class ObjectThrower : MonoBehaviour
             newObject.Init(_target);
             _objectPool.Add(newObject);
         }
+    }
+
+    private void CleanPool()
+    {
+        foreach (var item in _objectPool)
+        {
+            Destroy(item.gameObject);
+        }
+        _objectPool.Clear();
     }
 
     private void Throw()
@@ -67,7 +84,6 @@ public class ObjectThrower : MonoBehaviour
             Debug.Log("no free object in objectpool");
 
         throwedObject.transform.position = spawnPoint;
-        throwedObject.transform.Rotate(Vector3.forward, Random.Range(0, 360));
 
         throwedObject.gameObject.SetActive(true);
     }
@@ -79,5 +95,5 @@ public class ObjectThrower : MonoBehaviour
         float z = Random.Range(-area.localScale.z / 2, area.localScale.z / 2);
 
         return area.position + new Vector3(x, y, z);
-    }    
+    }
 }

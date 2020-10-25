@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : ThrowedObject
+public class UFO : ThrowedObject
 {
+    //сделать наклон по направлению движения
     [SerializeField] private float _maxRotateSpeed;
 
     private float _rotateSpeed;
@@ -11,12 +12,11 @@ public class Star : ThrowedObject
     private void Start()
     {
         _rotateSpeed = Random.Range(_maxRotateSpeed / 2, _maxRotateSpeed);
-        transform.Rotate(Vector3.forward, Random.Range(0, 360));
     }
 
     private void Update()
     {
-        transform.Rotate(Vector3.forward, _rotateSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
 
         if (Target == null)
             return;
