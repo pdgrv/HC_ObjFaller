@@ -1686,6 +1686,7 @@ MonoBehaviour:
   _throwedItems:
   - {fileID: 4307755056633455944, guid: 53a74a7f577f1e04a8b70d2bde98f208, type: 3}
   - {fileID: 2811764058906573209, guid: 92289e3d31d3a8e4782f1b4137446a94, type: 3}
+  - {fileID: 2103342657808754591, guid: 56bd84124cf1afd408e3cbed5949a3cd, type: 3}
   _thrower: {fileID: 512764551}
   _playerMoney: {fileID: 308164618}
 --- !u!1 &355366128
@@ -3033,7 +3034,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &825090595
 MonoBehaviour:
@@ -6759,7 +6760,7 @@ PrefabInstance:
     - target: {fileID: 7521190841378093846, guid: 84391987565fd9b4c9e75ffec705d69a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7521190841378093846, guid: 84391987565fd9b4c9e75ffec705d69a,
         type: 3}
