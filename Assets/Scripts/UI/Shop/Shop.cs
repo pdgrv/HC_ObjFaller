@@ -10,12 +10,16 @@ public class Shop : MonoBehaviour
     [SerializeField] private ObjectThrower _thrower;
     [SerializeField] private PlayerMoney _playerMoney;
 
+    private int _currentThrowedItem;
+
     private void Start()
     {
         foreach (var item in _throwedItems)
         {
             AddItem(item);
         }
+
+        LoadActiveItem();
     }
 
     private void AddItem(SellableItem item)
@@ -51,8 +55,24 @@ public class Shop : MonoBehaviour
     {
         if (_throwedItems.Contains((ThrowedObject)item))
         {
-            ThrowedObject upItem = item as ThrowedObject; 
+            ThrowedObject upItem = item as ThrowedObject;
+
+            _currentThrowedItem = _throwedItems.IndexOf(upItem);
+
             _thrower.SetThrowedObject(upItem);
         }
+
+        SaveActiveItem();
+    }
+
+    private void SaveActiveItem()
+    {
+        PlayerPrefs.SetInt("ThrowedItem", _currentThrowedItem);
+    }
+
+    private void LoadActiveItem()
+    {
+        _currentThrowedItem = PlayerPrefs.GetInt("ThrowedItem");
+        TryActivateItem(_throwedItems[_currentThrowedItem]);
     }
 }
