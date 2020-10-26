@@ -14,7 +14,6 @@ public class MovieProducer : MonoBehaviour
     [SerializeField] private float _girlAnimDelay;
     [SerializeField] private float _remainingMovieTime;
 
-
     private Coroutine _movieJob;
 
     public bool IsMovieEnded { get; private set; } = false;

@@ -6,6 +6,7 @@ public class FallingStar : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private Transform _target;
+    [SerializeField] private ParticleSystem _particle;
     [SerializeField] private float _speed;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _fullSize;
@@ -24,7 +25,7 @@ public class FallingStar : MonoBehaviour
 
     private void Start()
     {
-        _currentStar = _stars[1];
+        _currentStar = _stars[Random.Range(0,_stars.Count)];
 
         _rotatePoint = _rotateAroundPoint.position;
 
@@ -36,8 +37,11 @@ public class FallingStar : MonoBehaviour
     {
         if (_needMove)
         {
-            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.01f)
+            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.05f)
+            {
                 _needMove = false;
+                _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+            } 
 
             _currentStar.transform.position = Vector3.MoveTowards(_currentStar.transform.position, _target.transform.position, _speed * Time.deltaTime);
             _currentStar.transform.RotateAround(_rotatePoint, -_rotateAxis, _rotateSpeed * Time.deltaTime);
@@ -47,6 +51,8 @@ public class FallingStar : MonoBehaviour
     public void StartFalling()
     {
         _currentStar.transform.parent = null;
+        Instantiate(_particle, _currentStar.transform);
+
         _rotateAxis = _target.position - _currentStar.transform.position;
 
         _increaseSizeJob = StartCoroutine(IncreaseSizeThanMove());

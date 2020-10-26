@@ -895,7 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1111,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &257413855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1902,7 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5764706, g: 0.21176471, b: 0.99215686, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2474,7 +2474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GET 2x
+  m_text: continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2501,7 +2501,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 172
+  m_fontSize: 158.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3059,7 +3059,9 @@ MonoBehaviour:
   - {fileID: 1624216413}
   - {fileID: 1884796659}
   _target: {fileID: 7521190841802510739}
-  _speed: 8
+  _particle: {fileID: 2449532476247057970, guid: 9c7c99c95378535438114b3ea3954f99,
+    type: 3}
+  _speed: 7
   _rotateSpeed: 85
   _fullSize: 0.8
   _growSpeed: 0.02
@@ -4010,7 +4012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4662,7 +4664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5764706, g: 0.21176471, b: 0.99215686, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5134,12 +5136,12 @@ MonoBehaviour:
   _templates:
   - {fileID: 1944906939518331026, guid: 1347016e0872fba41adf7302288175b4, type: 3}
   _platformCount: 20
-  _countIncreasing: 2
+  _countIncreasing: 0
   _platformHeight: 0.45
   _angleStep: 4
   _rotateSpeed: -40
   _speedIncreasing: -1
-  _shiftCount: 3
+  _shiftCount: 1
   _materialPool:
   - {fileID: 2100000, guid: fa21d1503fd7e994095c73adf12cdc82, type: 2}
   - {fileID: 2100000, guid: 6b3c50fc0ba36a14aae0a3521b24d9ce, type: 2}
@@ -5636,7 +5638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6680,11 +6682,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 874626464, guid: 84391987565fd9b4c9e75ffec705d69a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.59
+      value: 5.56
       objectReference: {fileID: 0}
     - target: {fileID: 874626464, guid: 84391987565fd9b4c9e75ffec705d69a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.9
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 874626464, guid: 84391987565fd9b4c9e75ffec705d69a, type: 3}
       propertyPath: m_LocalPosition.y
