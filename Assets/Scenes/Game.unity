@@ -618,7 +618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103639930}
   m_LocalRotation: {x: 0.339598, y: -0.67506784, z: -0.51870954, w: -0.3998713}
-  m_LocalPosition: {x: 2.001, y: 0.519, z: 0.525}
+  m_LocalPosition: {x: 1.781, y: 0.618, z: 0.914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1181983460}
@@ -697,7 +697,7 @@ ParticleSystem:
   m_GameObject: {fileID: 103639930}
   serializedVersion: 6
   lengthInSec: 7
-  simulationSpeed: 0.95
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -940,8 +940,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.4
+      scalar: 0.6
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1465,7 +1465,7 @@ ParticleSystem:
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 0.35
+        scalar: 0.4
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -1521,7 +1521,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1968,7 +1968,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key0: {r: 1, g: 1, b: 1, a: 0.27450982}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1985,7 +1985,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 6554
+        atime1: 9830
         atime2: 45875
         atime3: 65535
         atime4: 0
@@ -7830,7 +7830,6 @@ MonoBehaviour:
   _rotateSpeed: 85
   _fullSize: 0.8
   _growSpeed: 0.02
-  _rotateAroundPoint: {fileID: 874626464}
 --- !u!1 &827325492
 GameObject:
   m_ObjectHideFlags: 0
@@ -8242,12 +8241,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865062500}
   m_CullTransparentMesh: 0
---- !u!4 &874626464 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 874626464, guid: 84391987565fd9b4c9e75ffec705d69a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7521190841802510738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &907658212
 GameObject:
   m_ObjectHideFlags: 0
