@@ -7,16 +7,17 @@ public class FallingStar : MonoBehaviour
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private Transform _target;
     [SerializeField] private ParticleSystem _particle;
+    [SerializeField] private ParticleSystem _girlParticle;
     [SerializeField] private float _speed;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _fullSize;
     [SerializeField] private float _growSpeed;
 
-    [SerializeField] private Transform _rotateAroundPoint;
+    //[SerializeField] private Transform _rotateAroundPoint;
 
     private GameObject _currentStar;
     private Vector3 _rotateAxis;
-    private Vector3 _rotatePoint;
+    //private Vector3 _rotatePoint;
     private Vector3 _increasingSize;
 
     private bool _needMove = false;
@@ -27,7 +28,7 @@ public class FallingStar : MonoBehaviour
     {
         _currentStar = _stars[Random.Range(0,_stars.Count)];
 
-        _rotatePoint = _rotateAroundPoint.position;
+        //_rotatePoint = _rotateAroundPoint.position;
 
         if (_increaseSizeJob != null)
             StopCoroutine(_increaseSizeJob);
@@ -41,10 +42,11 @@ public class FallingStar : MonoBehaviour
             {
                 _needMove = false;
                 _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+                _girlParticle.Play();
             } 
 
             _currentStar.transform.position = Vector3.MoveTowards(_currentStar.transform.position, _target.transform.position, _speed * Time.deltaTime);
-            _currentStar.transform.RotateAround(_rotatePoint, -_rotateAxis, _rotateSpeed * Time.deltaTime);
+            _currentStar.transform.RotateAround(new Vector3(0,0,0), -_rotateAxis, _rotateSpeed * Time.deltaTime);
         }
     }
 
