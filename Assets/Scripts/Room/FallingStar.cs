@@ -26,7 +26,7 @@ public class FallingStar : MonoBehaviour
 
     private void Start()
     {
-        _currentStar = _stars[Random.Range(0,_stars.Count)];
+        _currentStar = _stars[Random.Range(0, _stars.Count)];
 
         //_rotatePoint = _rotateAroundPoint.position;
 
@@ -43,10 +43,10 @@ public class FallingStar : MonoBehaviour
                 _needMove = false;
                 _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
                 _girlParticle.Play();
-            } 
+            }
 
             _currentStar.transform.position = Vector3.MoveTowards(_currentStar.transform.position, _target.transform.position, _speed * Time.deltaTime);
-            _currentStar.transform.RotateAround(new Vector3(0,0,0), -_rotateAxis, _rotateSpeed * Time.deltaTime);
+            _currentStar.transform.RotateAround(new Vector3(0, 0, 0), -_rotateAxis, _rotateSpeed * Time.deltaTime);
         }
     }
 

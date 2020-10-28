@@ -11,6 +11,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private PlayerMoney _playerMoney;
 
     private int _currentThrowedItem;
+    private List<ItemView> _viewsList = new List<ItemView>();
 
     private void Start()
     {
@@ -20,11 +21,14 @@ public class Shop : MonoBehaviour
         }
 
         LoadActiveItem();
+        TryActivateItem(_throwedItems[_currentThrowedItem]);
     }
 
     private void AddItem(SellableItem item)
     {
         var view = Instantiate(_template, _throwedContainer);
+        _viewsList.Add(view);
+
         view.ButtonClick += OnButtonClick;
 
         view.Render(item);
@@ -49,6 +53,8 @@ public class Shop : MonoBehaviour
         {
             TryActivateItem(item);
         }
+
+        ReRenderAll();
     }
 
     private void TryActivateItem(SellableItem item)
@@ -57,12 +63,26 @@ public class Shop : MonoBehaviour
         {
             ThrowedObject upItem = item as ThrowedObject;
 
+            _thrower.SetThrowedObject(upItem);
+
             _currentThrowedItem = _throwedItems.IndexOf(upItem);
 
-            _thrower.SetThrowedObject(upItem);
+            foreach (var item_ in _throwedItems)
+            {
+                item_.DeActivate();
+            }
+            item.Activate();
         }
 
         SaveActiveItem();
+    }
+
+    private void ReRenderAll()
+    {
+        for (int i = 0; i < _viewsList.Count; i++)
+        {
+            _viewsList[i].Render(_throwedItems[i]);
+        }
     }
 
     private void SaveActiveItem()
@@ -73,6 +93,5 @@ public class Shop : MonoBehaviour
     private void LoadActiveItem()
     {
         _currentThrowedItem = PlayerPrefs.GetInt("ThrowedItem");
-        TryActivateItem(_throwedItems[_currentThrowedItem]);
     }
 }

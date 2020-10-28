@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class ItemView : MonoBehaviour
 {
-    [SerializeField] private Image _icon;
+    [SerializeField] private Image _itemIcon;
+    [SerializeField] private Image _itemFrame;
+    [SerializeField] private Animator _backgroundAnimator;
+    [SerializeField] private Color _boughtFrameColor;
+    [SerializeField] private Color _notBoughtFrameColor;
     [SerializeField] private TMP_Text _price;
     [SerializeField] private Button _button;
 
@@ -29,12 +33,29 @@ public class ItemView : MonoBehaviour
     {
         _item = item;
 
-        //_icon.sprite = item.Icon;
+        _itemIcon.sprite = item.Icon;
 
-        if (!item.IsBuyed)
-            _price.text = item.Price.ToString();
-        else
+        if (item.IsBuyed)
+        {
             _price.gameObject.SetActive(false);
+            _itemFrame.color = _boughtFrameColor;
+        }
+        else
+        {
+            _price.text = item.Price.ToString();
+            _itemFrame.color = _notBoughtFrameColor;
+        }
+
+        if (item.IsActivated)
+        {
+            _backgroundAnimator.ResetTrigger("Stop");
+            _backgroundAnimator.SetTrigger("Start");
+        }
+        else
+        {
+            _backgroundAnimator.ResetTrigger("Start");
+            _backgroundAnimator.SetTrigger("Stop");
+        }
     }
 
     private void OnButtonClick()
