@@ -109,7 +109,7 @@ MonoBehaviour:
   _itemFrame: {fileID: 1308396926748402758}
   _backgroundAnimator: {fileID: 8885187604769584707}
   _boughtFrameColor: {r: 1, g: 1, b: 1, a: 1}
-  _notBoughtFrameColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.5882353}
+  _notBoughtFrameColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.88235295}
   _price: {fileID: 8535216161266828016}
   _button: {fileID: 5067940098198309900}
 --- !u!1 &2197118805718289539

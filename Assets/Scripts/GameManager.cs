@@ -74,13 +74,13 @@ public class GameManager : MonoBehaviour
 
     private void LoseLevel()
     {
-        _objectThrower.Stop();
+        _objectThrower.StopThrow();
         _menu.CompleteLevel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
     }
 
     private void WinLevel()
     {
-        _objectThrower.Stop();
+        _objectThrower.StopThrow();
         _menu.HideProgressBar();
         _playerMoney.AddMoney(_totalReward);
 

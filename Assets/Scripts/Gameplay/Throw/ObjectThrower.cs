@@ -32,6 +32,7 @@ public class ObjectThrower : MonoBehaviour
 
         _elapsedTime += Time.deltaTime;
 
+        //if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) -- for build
         if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject())
         {
             Throw();
@@ -47,7 +48,12 @@ public class ObjectThrower : MonoBehaviour
         Initialize();
     }
 
-    public void Stop()
+    public void GoThrow()
+    {
+        _canThrow = true;
+    }
+
+    public void StopThrow()
     {
         _canThrow = false;
 
