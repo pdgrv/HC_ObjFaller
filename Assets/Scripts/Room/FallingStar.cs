@@ -17,7 +17,7 @@ public class FallingStar : MonoBehaviour
 
     private GameObject _currentStar;
     private Vector3 _rotateAxis;
-    //private Vector3 _rotatePoint;
+    private Vector3 _rotatePoint;
     private Vector3 _increasingSize;
 
     private bool _needMove = false;
@@ -26,9 +26,9 @@ public class FallingStar : MonoBehaviour
 
     private void Start()
     {
-        _currentStar = _stars[Random.Range(0, _stars.Count)];
+        _currentStar = _stars[Random.Range(0,_stars.Count)];
 
-        //_rotatePoint = _rotateAroundPoint.position;
+        _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -3);
 
         if (_increaseSizeJob != null)
             StopCoroutine(_increaseSizeJob);
@@ -46,7 +46,7 @@ public class FallingStar : MonoBehaviour
             }
 
             _currentStar.transform.position = Vector3.MoveTowards(_currentStar.transform.position, _target.transform.position, _speed * Time.deltaTime);
-            _currentStar.transform.RotateAround(new Vector3(0, 0, 0), -_rotateAxis, _rotateSpeed * Time.deltaTime);
+            _currentStar.transform.RotateAround(_rotatePoint, _rotateAxis, _rotateSpeed * Time.deltaTime);
         }
     }
 

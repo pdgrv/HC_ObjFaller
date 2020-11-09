@@ -117,11 +117,41 @@ ModelImporter:
   - first:
       43: 4300010
     second: BedPosts_Bed
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedPosts_BedMat
+    second: {fileID: 2100000, guid: 19da89fedc567a04489284981278b2f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed_FootboardMat
+    second: {fileID: 2100000, guid: 018de812e3badc447bc15b76c77b2e7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed_HeadboardMat
+    second: {fileID: 2100000, guid: f34cd979e79ccc24d9690a706b885fe6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed_MatressMat
+    second: {fileID: 2100000, guid: d3f3b995287020148b2928f4154f4baf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed_PillowMat
+    second: {fileID: 2100000, guid: 2fce2b42f5ba7c84eac946fea34b880a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bed_SideboardMat
+    second: {fileID: 2100000, guid: 903a3b93164e3ce4cae8e681243f0cf0, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -183,7 +213,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
