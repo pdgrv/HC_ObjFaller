@@ -20,7 +20,7 @@ public class Shop : MonoBehaviour
             AddItem(item);
         }
 
-        LoadActiveItem();
+        LoadItems();
         TryActivateItem(_throwedItems[_currentThrowedItem]);
     }
 
@@ -73,8 +73,9 @@ public class Shop : MonoBehaviour
             }
             item.Activate();
         }
+        //else if (_roomItems.Contains((RoomItem)item)) { }
 
-        SaveActiveItem();
+        SaveItems();
     }
 
     private void ReRenderAll()
@@ -85,13 +86,31 @@ public class Shop : MonoBehaviour
         }
     }
 
-    private void SaveActiveItem()
+    private void SaveItems()
     {
-        PlayerPrefs.SetInt("ThrowedItem", _currentThrowedItem);
+        PlayerPrefs.SetInt("CurrentThrowedItem", _currentThrowedItem);
+
+        string buyedItemBools = "";
+        foreach (ThrowedObject item in _throwedItems)
+        {
+            if (item.IsBuyed)
+                buyedItemBools += 1;
+            else
+                buyedItemBools += 0;
+        }
+        PlayerPrefs.SetString("BuyedItems", buyedItemBools);
     }
 
-    private void LoadActiveItem()
+    private void LoadItems()
     {
-        _currentThrowedItem = PlayerPrefs.GetInt("ThrowedItem");
+        _currentThrowedItem = PlayerPrefs.GetInt("CurrentThrowedItem");
+
+        string buyedItemBools = PlayerPrefs.GetString("BuyedItems");
+
+        for (int i = 0; i < _throwedItems.Count; i++)
+        {
+            if (buyedItemBools[i] == 1)
+                _throwedItems[i].Buy();
+        }
     }
 }

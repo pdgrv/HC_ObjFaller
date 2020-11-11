@@ -26,9 +26,12 @@ public class FallingStar : MonoBehaviour
 
     private void Start()
     {
-        _currentStar = _stars[Random.Range(0,_stars.Count)];
+        _currentStar = _stars[Random.Range(0, _stars.Count)];
 
-        _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -3);
+        if (_currentStar.transform.position.x > -1)
+            _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -2);
+        else
+            _rotatePoint = _currentStar.transform.position + new Vector3(2, 0, -2);
 
         if (_increaseSizeJob != null)
             StopCoroutine(_increaseSizeJob);
