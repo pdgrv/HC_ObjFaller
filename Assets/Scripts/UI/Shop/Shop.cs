@@ -107,10 +107,13 @@ public class Shop : MonoBehaviour
 
         string buyedItemBools = PlayerPrefs.GetString("BuyedItems");
 
-        for (int i = 0; i < _throwedItems.Count; i++)
+        if (!string.IsNullOrEmpty(buyedItemBools))
         {
-            if (buyedItemBools[i] == 1)
-                _throwedItems[i].Buy();
+            for (int i = 0; i < _throwedItems.Count; i++)
+            {
+                if (buyedItemBools[i] == 1)
+                    _throwedItems[i].Buy();
+            }
         }
     }
 }
