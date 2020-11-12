@@ -98,6 +98,7 @@ public class Shop : MonoBehaviour
             else
                 buyedItemBools += 0;
         }
+
         PlayerPrefs.SetString("BuyedItems", buyedItemBools);
     }
 
@@ -111,7 +112,7 @@ public class Shop : MonoBehaviour
         {
             for (int i = 0; i < _throwedItems.Count; i++)
             {
-                if (buyedItemBools[i] == 1)
+                if (buyedItemBools[i] == '1')
                     _throwedItems[i].Buy();
             }
         }

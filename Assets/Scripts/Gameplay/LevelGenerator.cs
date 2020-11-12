@@ -19,6 +19,8 @@ public class LevelGenerator : MonoBehaviour
     private Platform _currentTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
 
+    private AudioSource _audio;
+
     private float _shiftAngle = 90;
     private int _destroyedPlatforms
     {
@@ -37,6 +39,10 @@ public class LevelGenerator : MonoBehaviour
     }
 
     public event UnityAction<int, int> PlatformCountChanged;
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();    
+    }
 
     private void Update()
     {
@@ -131,6 +137,7 @@ public class LevelGenerator : MonoBehaviour
 
     public void RemovePlatform(Platform platform)
     {
+        _audio.Play();
         _spawnedPlatforms.Remove(platform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);

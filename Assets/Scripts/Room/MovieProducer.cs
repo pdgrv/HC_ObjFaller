@@ -6,7 +6,7 @@ public class MovieProducer : MonoBehaviour
 {
     [SerializeField] private FallingStar _fallingStar;
     [SerializeField] private Animator _cameraAnimator;
-    [SerializeField] private Animator _girlAnimator;
+    [SerializeField] private Girl _girl;
     //[SerializeField] private Animation _mainLightAnimation;
     [SerializeField] private LightChanger _lightChanger;
 
@@ -31,7 +31,7 @@ public class MovieProducer : MonoBehaviour
         _cameraAnimator.SetTrigger("MoveCamera");
         yield return new WaitForSeconds(_girlAnimDelay);
 
-        _girlAnimator.SetTrigger("RollOver");
+        _girl.RollOver();
         _lightChanger.Dim();
         //_mainLightAnimation.Play();
 

@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshRenderer),typeof(Animation))]
 public class PlatformPart : MonoBehaviour
 {
     [SerializeField] private Platform _platform;
     [SerializeField] private bool _isEnemy = false;
     [SerializeField] private int _durable = 1;
 
+    private Animation _badAnimation;
+
     public bool IsEnemy => _isEnemy;
 
     private void Start()
     {
+        _badAnimation = GetComponent<Animation>();
+
         _platform = GetComponentInParent<Platform>();
     }
 
@@ -29,6 +33,8 @@ public class PlatformPart : MonoBehaviour
 
             if (_isEnemy)
             {
+                BadCollision();
+
                 if (--_durable <= 0)
                 {
                     _platform.GameOver();
@@ -38,5 +44,10 @@ public class PlatformPart : MonoBehaviour
 
             _platform.Destroy();
         }
+    }
+
+    private void BadCollision()
+    {
+        _badAnimation.Play();
     }
 }
