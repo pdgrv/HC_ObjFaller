@@ -6614,7 +6614,9 @@ MonoBehaviour:
   _poolCapacity: 5
   _spawnArea: {fileID: 971361427}
   _target: {fileID: 2069128563}
-  _delay: 0.32
+  _maxDelay: 0.65
+  _minDelay: 0.25
+  _changeDelaySpeed: 0.07
 --- !u!4 &512764552
 Transform:
   m_ObjectHideFlags: 0
@@ -8084,9 +8086,9 @@ RectTransform:
   m_Father: {fileID: 1688544151}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: 625}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -147, y: -614}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907658214
@@ -10911,9 +10913,9 @@ RectTransform:
   m_Father: {fileID: 1688544151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -575, y: 625}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 122, y: -614}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1908692187

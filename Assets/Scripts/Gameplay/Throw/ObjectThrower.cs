@@ -11,7 +11,11 @@ public class ObjectThrower : MonoBehaviour
     [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
     [SerializeField] private Transform _target;
-    [SerializeField] private float _delay;
+    [SerializeField] private float _maxDelay;
+    [SerializeField] private float _minDelay;
+    [SerializeField] private float _changeDelaySpeed;
+
+    private float _delay;
 
     private List<ThrowedObject> _objectPool = new List<ThrowedObject>();
 
@@ -20,9 +24,10 @@ public class ObjectThrower : MonoBehaviour
 
     private void Start()
     {
+        _delay = _maxDelay;
         _elapsedTime = _delay;
 
-        Initialize();
+        InitializePool();
     }
 
     private void Update()
@@ -33,10 +38,23 @@ public class ObjectThrower : MonoBehaviour
         _elapsedTime += Time.deltaTime;
 
         //if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
-        if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            Throw();
-            _elapsedTime = 0;
+            if (_elapsedTime >= _delay)
+            {
+                Throw();
+                _elapsedTime = 0;
+            }
+
+            if (_delay > _minDelay)
+            {
+                _delay -= _changeDelaySpeed * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (_delay < _maxDelay)
+                _delay += _changeDelaySpeed * Time.deltaTime * 2;
         }
     }
 
@@ -45,7 +63,7 @@ public class ObjectThrower : MonoBehaviour
         _object = template;
 
         CleanPool();
-        Initialize();
+        InitializePool();
     }
 
     public void GoThrow()
@@ -61,7 +79,7 @@ public class ObjectThrower : MonoBehaviour
             throwedObject.gameObject.SetActive(false);
     }
 
-    private void Initialize()
+    private void InitializePool()
     {
         for (int i = 0; i < _poolCapacity; i++)
         {
