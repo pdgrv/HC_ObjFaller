@@ -7,7 +7,6 @@ using UnityEngine.Audio;
 public class Girl : MonoBehaviour
 {
     [SerializeField] private float _audioDelay;
-    [SerializeField] private List<AudioClip> _clips;
 
     private Animator _animator;
     private AudioSource _audio;
@@ -22,7 +21,6 @@ public class Girl : MonoBehaviour
     {
         _animator.SetTrigger("RollOver");
 
-        _audio.clip = _clips[Random.Range(0, _clips.Count)];
         _audio.PlayDelayed(_audioDelay);
     }
 }
