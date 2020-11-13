@@ -15,11 +15,10 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _shiftCount;
     [SerializeField] private List<Material> _materialPool;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private PlatformAudio _platformAudio;
 
     private Platform _currentTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
-
-    private AudioSource _audio;
 
     private float _shiftAngle = 90;
     private int _destroyedPlatforms
@@ -39,10 +38,6 @@ public class LevelGenerator : MonoBehaviour
     }
 
     public event UnityAction<int, int> PlatformCountChanged;
-    private void Start()
-    {
-        _audio = GetComponent<AudioSource>();    
-    }
 
     private void Update()
     {
@@ -129,7 +124,7 @@ public class LevelGenerator : MonoBehaviour
     private void AddPlatform(int platformNumber)
     {
         var newPlatform = Instantiate(_currentTemplate, Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
-        newPlatform.Init(this, _gameManager);
+        newPlatform.Init(this, _gameManager, _platformAudio);
         _spawnedPlatforms.Add(newPlatform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
@@ -137,7 +132,6 @@ public class LevelGenerator : MonoBehaviour
 
     public void RemovePlatform(Platform platform)
     {
-        _audio.Play();
         _spawnedPlatforms.Remove(platform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);

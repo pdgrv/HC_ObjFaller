@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class FallingStar : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private Transform _target;
     [SerializeField] private ParticleSystem _particle;
-    [SerializeField] private ParticleSystem _girlParticle;
+    [SerializeField] private Girl _girl;
     [SerializeField] private float _speed;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _fullSize;
     [SerializeField] private float _growSpeed;
 
     //[SerializeField] private Transform _rotateAroundPoint;
+    private AudioSource _audio;
 
     private GameObject _currentStar;
     private Vector3 _rotateAxis;
@@ -26,6 +28,8 @@ public class FallingStar : MonoBehaviour
 
     private void Start()
     {
+        _audio = GetComponent<AudioSource>();
+
         _currentStar = _stars[Random.Range(0, _stars.Count)];
 
         if (_currentStar.transform.position.x > -1)
@@ -41,11 +45,13 @@ public class FallingStar : MonoBehaviour
     {
         if (_needMove)
         {
-            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.05f)
+            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.1f)
             {
                 _needMove = false;
                 _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
-                _girlParticle.Play();
+
+                _audio.Stop();
+                _girl.PlayFinalParticle();
             }
 
             _currentStar.transform.position = Vector3.MoveTowards(_currentStar.transform.position, _target.transform.position, _speed * Time.deltaTime);
@@ -85,6 +91,7 @@ public class FallingStar : MonoBehaviour
 
         yield return waitForFixedUpdate;
 
+        _audio.Play();  
         _needMove = true;
     }
 }

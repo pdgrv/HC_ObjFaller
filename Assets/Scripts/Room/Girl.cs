@@ -8,6 +8,7 @@ public class Girl : MonoBehaviour
 {
     [SerializeField] private float _audioDelay;
     [SerializeField] private List<AudioClip> _clips;
+    [SerializeField] private ParticleSystem _finalParticle;
 
     private Animator _animator;
     private AudioSource _audio;
@@ -24,5 +25,10 @@ public class Girl : MonoBehaviour
 
         _audio.clip = _clips[Random.Range(0, _clips.Count)];
         _audio.PlayDelayed(_audioDelay);
+    }
+
+    public void PlayFinalParticle()
+    {
+        _finalParticle.Play();
     }
 }

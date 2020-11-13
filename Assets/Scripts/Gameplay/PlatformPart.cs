@@ -42,6 +42,7 @@ public class PlatformPart : MonoBehaviour
                 return;
             }
 
+            _platform.PlayAudio(true);
             _platform.Destroy();
         }
     }
@@ -49,5 +50,6 @@ public class PlatformPart : MonoBehaviour
     private void BadCollision()
     {
         _badAnimation.Play();
+        _platform.PlayAudio(false);
     }
 }
