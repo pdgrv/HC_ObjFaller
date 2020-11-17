@@ -37,7 +37,7 @@ public class ObjectThrower : MonoBehaviour
 
         _elapsedTime += Time.deltaTime;
 
-        //if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
+        //if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (_elapsedTime >= _delay)

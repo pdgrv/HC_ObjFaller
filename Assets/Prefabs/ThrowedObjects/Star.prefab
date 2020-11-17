@@ -128,5 +128,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: df463bddb0a12c14aaf56da112954fd3, type: 3}
   _isBuyed: 1
   _isActivated: 1
-  Speed: 7.5
+  Speed: 7
+  _startScale: 0.35
+  _increaseScaleSpeed: 1.2
   _maxRotateSpeed: 180

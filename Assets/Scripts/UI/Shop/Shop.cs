@@ -22,6 +22,7 @@ public class Shop : MonoBehaviour
 
         LoadItems();
         TryActivateItem(_throwedItems[_currentThrowedItem]);
+        ReRenderAll();
     }
 
     private void AddItem(SellableItem item)
