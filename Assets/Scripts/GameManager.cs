@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     private void WinLevel()
     {
         _objectThrower.StopThrow();
-        _menu.HideProgressBar();
+        _menu.HideGameplayBars();
         _playerMoney.AddMoney(_totalReward);
 
         _currentLevel++;

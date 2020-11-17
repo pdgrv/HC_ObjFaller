@@ -32,11 +32,6 @@ public class FallingStar : MonoBehaviour
 
         _currentStar = _stars[Random.Range(0, _stars.Count)];
 
-        if (_currentStar.transform.position.x > -1)
-            _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, 0);
-        else
-            _rotatePoint = _currentStar.transform.position + new Vector3(2, 0, 0);
-
         if (_increaseSizeJob != null)
             StopCoroutine(_increaseSizeJob);
     }
@@ -45,7 +40,7 @@ public class FallingStar : MonoBehaviour
     {
         if (_needMove)
         {
-            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.1f)
+            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.05f)
             {
                 _needMove = false;
                 _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
@@ -63,6 +58,11 @@ public class FallingStar : MonoBehaviour
     {
         _currentStar.transform.parent = null;
         Instantiate(_particle, _currentStar.transform);
+
+        if (_currentStar.transform.position.x > -1)
+            _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -2);
+        else
+            _rotatePoint = _currentStar.transform.position + new Vector3(2, 0, 3);
 
         _rotateAxis = _target.position - _currentStar.transform.position;
 

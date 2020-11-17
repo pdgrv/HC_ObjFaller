@@ -11,11 +11,8 @@ public class ObjectThrower : MonoBehaviour
     [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
     [SerializeField] private Transform _target;
-    [SerializeField] private float _maxDelay;
-    [SerializeField] private float _minDelay;
-    [SerializeField] private float _changeDelaySpeed;
 
-    private float _delay;
+    private ThrowerDelay _throwerDelay;
 
     private List<ThrowedObject> _objectPool = new List<ThrowedObject>();
 
@@ -24,8 +21,8 @@ public class ObjectThrower : MonoBehaviour
 
     private void Start()
     {
-        _delay = _maxDelay;
-        _elapsedTime = _delay;
+        _throwerDelay = GetComponent<ThrowerDelay>();
+        _elapsedTime = _throwerDelay.Delay;
 
         InitializePool();
     }
@@ -40,21 +37,11 @@ public class ObjectThrower : MonoBehaviour
         //if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (_elapsedTime >= _delay)
+            if (_elapsedTime >= _throwerDelay.Delay)
             {
                 Throw();
                 _elapsedTime = 0;
             }
-
-            if (_delay > _minDelay)
-            {
-                _delay -= _changeDelaySpeed * Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (_delay < _maxDelay)
-                _delay += _changeDelaySpeed * Time.deltaTime * 2;
         }
     }
 
