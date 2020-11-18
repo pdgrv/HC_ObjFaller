@@ -13,6 +13,14 @@ public class Shop : MonoBehaviour
     private int _currentThrowedItem;
     private List<ItemView> _viewsList = new List<ItemView>();
 
+    private void OnDisable()
+    {
+        foreach (var item in _viewsList)
+        {
+            item.ButtonClick -= OnButtonClick;
+        }    
+    }
+
     private void Start()
     {
         foreach (var item in _throwedItems)
