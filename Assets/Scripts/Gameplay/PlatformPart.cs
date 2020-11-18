@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer),typeof(Animation))]
+[RequireComponent(typeof(MeshRenderer), typeof(Animation))]
 public class PlatformPart : MonoBehaviour
 {
     [SerializeField] private Platform _platform;
     [SerializeField] private bool _isEnemy = false;
     [SerializeField] private int _durable = 1;
+    [SerializeField] private Material _crackedMateial;
 
     private Animation _badAnimation;
 
@@ -34,11 +35,6 @@ public class PlatformPart : MonoBehaviour
             if (_isEnemy)
             {
                 BadCollision();
-
-                if (--_durable <= 0)
-                {
-                    _platform.GameOver();
-                }
                 return;
             }
 
@@ -49,7 +45,20 @@ public class PlatformPart : MonoBehaviour
 
     private void BadCollision()
     {
+        if (--_durable <= 0)
+            _platform.GameOver();
+
         _badAnimation.Play();
         _platform.PlayAudio(false);
+
+        SetMaterial(_crackedMateial);
+        //StartCoroutine(WaitAnimEnd());
     }
+
+    //private IEnumerator WaitAnimEnd()
+    //{
+    //    yield return new WaitWhile(() => _badAnimation.isPlaying);
+
+    //    SetMaterial(_crackedMateial);
+    //}
 }

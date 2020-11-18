@@ -111,6 +111,7 @@ MonoBehaviour:
   _platform: {fileID: 1944906939518331026}
   _isEnemy: 0
   _durable: 1
+  _crackedMateial: {fileID: 2100000, guid: 5c22a75a3d108b14ba5b086dafe952ec, type: 2}
 --- !u!111 &9103308089636521162
 Animation:
   m_ObjectHideFlags: 0
@@ -288,6 +289,7 @@ MonoBehaviour:
   _platform: {fileID: 1944906939518331026}
   _isEnemy: 1
   _durable: 2
+  _crackedMateial: {fileID: 2100000, guid: 5c22a75a3d108b14ba5b086dafe952ec, type: 2}
 --- !u!111 &7537155556557066337
 Animation:
   m_ObjectHideFlags: 0
@@ -415,6 +417,7 @@ MonoBehaviour:
   _platform: {fileID: 1944906939518331026}
   _isEnemy: 0
   _durable: 1
+  _crackedMateial: {fileID: 2100000, guid: 5c22a75a3d108b14ba5b086dafe952ec, type: 2}
 --- !u!111 &2553556415418753165
 Animation:
   m_ObjectHideFlags: 0
@@ -541,6 +544,7 @@ MonoBehaviour:
   _platform: {fileID: 1944906939518331026}
   _isEnemy: 0
   _durable: 1
+  _crackedMateial: {fileID: 2100000, guid: 5c22a75a3d108b14ba5b086dafe952ec, type: 2}
 --- !u!111 &5021714955615222759
 Animation:
   m_ObjectHideFlags: 0
