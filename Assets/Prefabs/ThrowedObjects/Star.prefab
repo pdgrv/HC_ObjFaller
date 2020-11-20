@@ -129,6 +129,6 @@ MonoBehaviour:
   _isBuyed: 1
   _isActivated: 1
   Speed: 7
-  _startScale: 0.35
+  _startScale: 0.32
   _increaseScaleSpeed: 1.2
   _maxRotateSpeed: 180

@@ -21,7 +21,7 @@ public class ThrowerDelay : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (Input.GetMouseButton(0) && _elapsedTime >= _delay && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
+        //if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Delay >= _minDelay + _changeDelaySpeed)

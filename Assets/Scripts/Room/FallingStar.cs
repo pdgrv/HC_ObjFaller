@@ -40,7 +40,7 @@ public class FallingStar : MonoBehaviour
     {
         if (_needMove)
         {
-            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.05f)
+            if (Vector3.Distance(_currentStar.transform.position, _target.transform.position) < 0.1f)
             {
                 _needMove = false;
                 _currentStar.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
@@ -60,9 +60,9 @@ public class FallingStar : MonoBehaviour
         Instantiate(_particle, _currentStar.transform);
 
         if (_currentStar.transform.position.x > -1)
-            _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -2);
+            _rotatePoint = _currentStar.transform.position + new Vector3(-1, 0, -1);
         else
-            _rotatePoint = _currentStar.transform.position + new Vector3(2, 0, 3);
+            _rotatePoint = _currentStar.transform.position + new Vector3(2, 0, 1);
 
         _rotateAxis = _target.position - _currentStar.transform.position;
 

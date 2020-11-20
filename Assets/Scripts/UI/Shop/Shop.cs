@@ -33,7 +33,7 @@ public class Shop : MonoBehaviour
         ReRenderAll();
     }
 
-    private void AddItem(SellableItem item)
+    private void AddItem(SellableItem item) // добавить контейнер в инпут
     {
         var view = Instantiate(_template, _throwedContainer);
         _viewsList.Add(view);

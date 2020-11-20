@@ -23,12 +23,13 @@ public class PowerBar : MonoBehaviour
 
     private void OnChangeThrowerDelay(float value, float maxValue)
     {
-        if (value > 0.001f)
+        _slider.value = value / maxValue;
+
+        if (_slider.value > 0.07f)
         {
             _slider.gameObject.SetActive(true);
-            _slider.value = value / maxValue;
         }
-        else
+        else if (_slider.value < 0.01f)
             _slider.gameObject.SetActive(false);
 
         if (_slider.value > 0.9f)
