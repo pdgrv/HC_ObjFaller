@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UFO : ThrowedObject
+public class UFO : ThrowedItem
 {
     //сделать наклон по направлению движения
     [SerializeField] private float _maxRotateSpeed;    

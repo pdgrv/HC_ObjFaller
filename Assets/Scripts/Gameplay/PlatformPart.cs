@@ -28,7 +28,7 @@ public class PlatformPart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ThrowedObject throwedObject))
+        if (other.TryGetComponent(out ThrowedItem throwedObject))
         {
             throwedObject.Die();
 

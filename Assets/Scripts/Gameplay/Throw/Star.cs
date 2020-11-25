@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : ThrowedObject
+public class Star : ThrowedItem
 {
     [SerializeField] private float _maxRotateSpeed;
 

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ObjectThrower : MonoBehaviour
 {
-    [SerializeField] private ThrowedObject _object;
+    [SerializeField] private ThrowedItem _object;
     [SerializeField] private GameObject _container;
     [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
@@ -14,7 +14,7 @@ public class ObjectThrower : MonoBehaviour
 
     private ThrowerDelay _throwerDelay;
 
-    private List<ThrowedObject> _objectPool = new List<ThrowedObject>();
+    private List<ThrowedItem> _objectPool = new List<ThrowedItem>();
 
     private bool _canThrow = true;
     private float _elapsedTime;
@@ -45,7 +45,7 @@ public class ObjectThrower : MonoBehaviour
         }
     }
 
-    public void SetThrowedObject(ThrowedObject template)
+    public void SetThrowedObject(ThrowedItem template)
     {
         _object = template;
 
@@ -62,7 +62,7 @@ public class ObjectThrower : MonoBehaviour
     {
         _canThrow = false;
 
-        foreach (ThrowedObject throwedObject in _objectPool)
+        foreach (ThrowedItem throwedObject in _objectPool)
             throwedObject.gameObject.SetActive(false);
     }
 
@@ -70,7 +70,7 @@ public class ObjectThrower : MonoBehaviour
     {
         for (int i = 0; i < _poolCapacity; i++)
         {
-            ThrowedObject newObject = Instantiate(_object, _container.transform);
+            ThrowedItem newObject = Instantiate(_object, _container.transform);
             newObject.gameObject.SetActive(false);
 
             newObject.Init(_target);
@@ -90,7 +90,7 @@ public class ObjectThrower : MonoBehaviour
     private void Throw()
     {
         Vector3 spawnPoint = RandomPointInArea(_spawnArea);
-        ThrowedObject throwedObject = _objectPool.First(p => p.gameObject.activeSelf == false);
+        ThrowedItem throwedObject = _objectPool.First(p => p.gameObject.activeSelf == false);
         if (throwedObject == null)
             Debug.Log("no free object in objectpool");
 

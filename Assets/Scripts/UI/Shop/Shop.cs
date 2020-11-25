@@ -6,26 +6,39 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private ItemView _template;
     [SerializeField] private Transform _throwedContainer;
-    [SerializeField] private List<ThrowedObject> _throwedItems;
+    [SerializeField] private List<ThrowedItem> _throwedItems;
     [SerializeField] private ObjectThrower _thrower;
+    [SerializeField] private Transform _roomContainer;
+    [SerializeField] private List<RoomItem> _roomItems;
     [SerializeField] private PlayerMoney _playerMoney;
 
     private int _currentThrowedItem;
-    private List<ItemView> _viewsList = new List<ItemView>();
+    private List<ItemView> _throwedViewsList = new List<ItemView>();
+    private List<ItemView> _roomViewsList = new List<ItemView>();
 
     private void OnDisable()
     {
-        foreach (var item in _viewsList)
+        foreach (var item in _throwedViewsList)
         {
             item.ButtonClick -= OnButtonClick;
-        }    
+        }
+
+        foreach (var item in _roomViewsList)
+        {
+            item.ButtonClick -= OnButtonClick;
+        }
     }
 
-    private void Start()
+    private void Awake()
     {
         foreach (var item in _throwedItems)
         {
-            AddItem(item);
+            AddItem(item, _throwedContainer, _throwedViewsList);
+        }
+
+        foreach (var item in _roomItems)
+        {
+            AddItem(item, _roomContainer, _roomViewsList);
         }
 
         LoadItems();
@@ -33,10 +46,10 @@ public class Shop : MonoBehaviour
         ReRenderAll();
     }
 
-    private void AddItem(SellableItem item) // добавить контейнер в инпут
+    private void AddItem(SellableItem item, Transform container, List<ItemView> _itemViewList)
     {
-        var view = Instantiate(_template, _throwedContainer);
-        _viewsList.Add(view);
+        var view = Instantiate(_template, container);
+        _itemViewList.Add(view);
 
         view.ButtonClick += OnButtonClick;
 
@@ -56,6 +69,7 @@ public class Shop : MonoBehaviour
             else
             {
                 Debug.Log("Недостаточно денег");
+                return;
             }
         }
         else
@@ -68,9 +82,9 @@ public class Shop : MonoBehaviour
 
     private void TryActivateItem(SellableItem item)
     {
-        if (_throwedItems.Contains((ThrowedObject)item))
+        if (item is ThrowedItem)
         {
-            ThrowedObject upItem = item as ThrowedObject;
+            ThrowedItem upItem = item as ThrowedItem;
 
             _thrower.SetThrowedObject(upItem);
 
@@ -82,16 +96,26 @@ public class Shop : MonoBehaviour
             }
             item.Activate();
         }
-        //else if (_roomItems.Contains((RoomItem)item)) { }
+        else if (item is RoomItem)
+        {
+            RoomItem upItem = item as RoomItem;
+
+            upItem.TryRender();
+        }
 
         SaveItems();
     }
 
     private void ReRenderAll()
     {
-        for (int i = 0; i < _viewsList.Count; i++)
+        for (int i = 0; i < _throwedViewsList.Count; i++)
         {
-            _viewsList[i].Render(_throwedItems[i]);
+            _throwedViewsList[i].Render(_throwedItems[i]);
+        }
+
+        for (int i = 0; i < _roomViewsList.Count; i++)
+        {
+            _roomViewsList[i].Render(_roomItems[i]);
         }
     }
 
@@ -99,30 +123,52 @@ public class Shop : MonoBehaviour
     {
         PlayerPrefs.SetInt("CurrentThrowedItem", _currentThrowedItem);
 
-        string buyedItemBools = "";
-        foreach (ThrowedObject item in _throwedItems)
+        string buyedThrowedItemBools = "";
+        foreach (ThrowedItem item in _throwedItems)
         {
             if (item.IsBuyed)
-                buyedItemBools += 1;
+                buyedThrowedItemBools += 1;
             else
-                buyedItemBools += 0;
+                buyedThrowedItemBools += 0;
         }
 
-        PlayerPrefs.SetString("BuyedItems", buyedItemBools);
+        PlayerPrefs.SetString("BuyedThrowedItems", buyedThrowedItemBools);
+
+        string buyedRoomItemsBools = "";
+        foreach (RoomItem item in _roomItems)
+        {
+            if (item.IsBuyed)
+                buyedRoomItemsBools += 1;
+            else
+                buyedRoomItemsBools += 0;
+        }
+
+        PlayerPrefs.SetString("BuyedRoomItems", buyedRoomItemsBools);
     }
 
     private void LoadItems()
     {
         _currentThrowedItem = PlayerPrefs.GetInt("CurrentThrowedItem");
 
-        string buyedItemBools = PlayerPrefs.GetString("BuyedItems");
+        string buyedThrowedItemBools = PlayerPrefs.GetString("BuyedThrowedItems");
 
-        if (!string.IsNullOrEmpty(buyedItemBools))
+        if (!string.IsNullOrEmpty(buyedThrowedItemBools))
         {
             for (int i = 0; i < _throwedItems.Count; i++)
             {
-                if (buyedItemBools[i] == '1')
+                if (buyedThrowedItemBools[i] == '1')
                     _throwedItems[i].Buy();
+            }
+        }
+
+        string buyedRoomItemBools = PlayerPrefs.GetString("BuyedRoomItems");
+
+        if (!string.IsNullOrEmpty(buyedRoomItemBools))
+        {
+            for (int i = 0; i < _roomItems.Count; i++)
+            {
+                if (buyedRoomItemBools[i] == '1')
+                    _roomItems[i].Buy();
             }
         }
     }

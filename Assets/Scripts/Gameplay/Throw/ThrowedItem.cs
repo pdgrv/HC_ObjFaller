@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ThrowedObject : SellableItem
+public abstract class ThrowedItem : SellableItem
 {
     [SerializeField] protected float Speed;
     [SerializeField] private float _startScale;
@@ -19,7 +19,7 @@ public abstract class ThrowedObject : SellableItem
             StopCoroutine(_increaseSizeJob);
             _increaseSizeJob = null;
         }
-        
+
         _increaseSizeJob = StartCoroutine(IncreaseSize());
     }
 
