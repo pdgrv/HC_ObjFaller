@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 01b3949100cd269488562cd862894da7
+guid: 357473063025f644f806cf0ac3c2c0a7
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 10443_Fern_v1_SGMat
-    second: {fileID: 2100000, guid: 23acaa69bbf316546b09c5782fa226eb, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -39,10 +34,10 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.04
+    globalScale: 20
     meshCompression: 1
     addColliders: 0
-    useSRGBMaterialColor: 0
+    useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 0
@@ -86,10 +81,10 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.04
+    globalScale: 0.19999999
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

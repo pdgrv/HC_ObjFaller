@@ -1,0 +1,264 @@
+fileFormatVersion: 2
+guid: e220328c34bca0348a4ada832cf83493
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Dresser_BottomLeft
+  - first:
+      1: 100004
+    second: Dresser_BottomMiddle
+  - first:
+      1: 100006
+    second: Dresser_BottomRight
+  - first:
+      1: 100008
+    second: Dresser_Dresser
+  - first:
+      1: 100010
+    second: Dresser_TopLeft
+  - first:
+      1: 100012
+    second: Dresser_TopMiddle
+  - first:
+      1: 100014
+    second: Dresser_TopRight
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Dresser_BottomLeft
+  - first:
+      4: 400004
+    second: Dresser_BottomMiddle
+  - first:
+      4: 400006
+    second: Dresser_BottomRight
+  - first:
+      4: 400008
+    second: Dresser_Dresser
+  - first:
+      4: 400010
+    second: Dresser_TopLeft
+  - first:
+      4: 400012
+    second: Dresser_TopMiddle
+  - first:
+      4: 400014
+    second: Dresser_TopRight
+  - first:
+      21: 2100000
+    second: Dresser_BottomLeftMat
+  - first:
+      21: 2100002
+    second: Dresser_BottomMiddleMat
+  - first:
+      21: 2100004
+    second: Dresser_BottomRightMat
+  - first:
+      21: 2100006
+    second: Dresser_DresserMat
+  - first:
+      21: 2100008
+    second: Dresser_TopLeftMat
+  - first:
+      21: 2100010
+    second: Dresser_TopMiddleMat
+  - first:
+      21: 2100012
+    second: Dresser_TopRightMat
+  - first:
+      23: 2300000
+    second: Dresser_BottomLeft
+  - first:
+      23: 2300002
+    second: Dresser_BottomMiddle
+  - first:
+      23: 2300004
+    second: Dresser_BottomRight
+  - first:
+      23: 2300006
+    second: Dresser_Dresser
+  - first:
+      23: 2300008
+    second: Dresser_TopLeft
+  - first:
+      23: 2300010
+    second: Dresser_TopMiddle
+  - first:
+      23: 2300012
+    second: Dresser_TopRight
+  - first:
+      33: 3300000
+    second: Dresser_BottomLeft
+  - first:
+      33: 3300002
+    second: Dresser_BottomMiddle
+  - first:
+      33: 3300004
+    second: Dresser_BottomRight
+  - first:
+      33: 3300006
+    second: Dresser_Dresser
+  - first:
+      33: 3300008
+    second: Dresser_TopLeft
+  - first:
+      33: 3300010
+    second: Dresser_TopMiddle
+  - first:
+      33: 3300012
+    second: Dresser_TopRight
+  - first:
+      43: 4300000
+    second: Dresser_BottomLeft
+  - first:
+      43: 4300002
+    second: Dresser_BottomMiddle
+  - first:
+      43: 4300004
+    second: Dresser_BottomRight
+  - first:
+      43: 4300006
+    second: Dresser_Dresser
+  - first:
+      43: 4300008
+    second: Dresser_TopLeft
+  - first:
+      43: 4300010
+    second: Dresser_TopMiddle
+  - first:
+      43: 4300012
+    second: Dresser_TopRight
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_BottomLeftMat
+    second: {fileID: 2100000, guid: 16d605f6c5aae174ea38dd48b9d5b485, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_BottomMiddleMat
+    second: {fileID: 2100000, guid: b0288954a46b43348b1dc4a17376cb05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_BottomRightMat
+    second: {fileID: 2100000, guid: 40447472ebfecd94b82b114fcf8f1c13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_DresserMat
+    second: {fileID: 2100000, guid: 6e2b11f41c3a7c84690fa33cac9aa2b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_TopLeftMat
+    second: {fileID: 2100000, guid: f68537aff8fd68446ae720b259d80b16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_TopMiddleMat
+    second: {fileID: 2100000, guid: 29ec5e32b270c6d40bc6cc04c3005994, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dresser_TopRightMat
+    second: {fileID: 2100000, guid: 74a8e8657cd28c840a34ba960088aa8f, type: 2}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 1
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.2
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 0
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

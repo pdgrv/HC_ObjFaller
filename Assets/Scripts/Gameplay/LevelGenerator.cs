@@ -20,7 +20,7 @@ public class LevelGenerator : MonoBehaviour
     private Platform _currentTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
 
-    private float _shiftAngle = 90;
+    private float _shiftAngle = 90f;
     private int _destroyedPlatforms
     {
         get
@@ -69,6 +69,7 @@ public class LevelGenerator : MonoBehaviour
     {
         _platformCount += levelNumber * _countIncreasing;
         _rotateSpeed += levelNumber * _speedIncreasing;
+        _shiftCount += (levelNumber / 10);
     }
 
     [ContextMenu("GenerateLevel")]
