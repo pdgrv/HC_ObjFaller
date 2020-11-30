@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         LevelChanged?.Invoke(_currentLevel);
 
         _movieProducer.StartMovie();
-        StartCoroutine(WaitMovieEnd());
+        StartCoroutine(CompleteLevelAfterMovie());
     }
 
     private void SaveProgress()
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    private IEnumerator WaitMovieEnd()
+    private IEnumerator CompleteLevelAfterMovie()
     {
         yield return new WaitUntil(() => _movieProducer.IsMovieEnded);
 
