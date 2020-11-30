@@ -15,11 +15,11 @@ public class UFO : ThrowedItem
         _rotateSpeed = Random.Range(_maxRotateSpeed / 2, _maxRotateSpeed);
     }
 
-    protected void OnEnable()
+    private new void OnEnable()
     {
         base.OnEnable();
 
-        LookAtTarget();
+        LeanTowardsTarget();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class UFO : ThrowedItem
         transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
     }
 
-    private void LookAtTarget()
+    private void LeanTowardsTarget()
     {
         float tiltRate = transform.position.x;
 

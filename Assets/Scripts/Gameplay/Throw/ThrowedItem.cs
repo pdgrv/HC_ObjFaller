@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class ThrowedItem : SellableItem
 {
-    [SerializeField] protected float Speed;
-    [SerializeField] private float _startScale;
-    [SerializeField] private float _increaseScaleSpeed;
+    [SerializeField] protected float Speed = 7f;
+    [SerializeField] private float _startScale = 0.3f;
+    [SerializeField] private float _increaseScaleSpeed = 1.2f;
 
     protected Transform Target;
 
