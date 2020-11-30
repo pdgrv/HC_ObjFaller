@@ -154,7 +154,7 @@ public class Shop : MonoBehaviour
 
         if (!string.IsNullOrEmpty(buyedThrowedItemBools))
         {
-            for (int i = 0; i < _throwedItems.Count; i++)
+            for (int i = 0; i < buyedThrowedItemBools.Length; i++)
             {
                 if (buyedThrowedItemBools[i] == '1')
                     _throwedItems[i].Buy();
@@ -165,7 +165,7 @@ public class Shop : MonoBehaviour
 
         if (!string.IsNullOrEmpty(buyedRoomItemBools))
         {
-            for (int i = 0; i < _roomItems.Count; i++)
+            for (int i = 0; i < buyedRoomItemBools.Length; i++)
             {
                 if (buyedRoomItemBools[i] == '1')
                     _roomItems[i].Buy();

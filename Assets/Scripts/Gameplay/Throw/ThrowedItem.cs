@@ -12,7 +12,7 @@ public abstract class ThrowedItem : SellableItem
 
     private Coroutine _increaseSizeJob;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         if (_increaseSizeJob != null)
         {
