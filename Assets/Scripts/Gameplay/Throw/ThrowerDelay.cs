@@ -21,8 +21,11 @@ public class ThrowerDelay : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
+#if (UNITY_ANDROID && !UNITY_EDITOR)
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) //-- for build
+#elif (UNITY_EDITOR && UNITY_ANDROID)
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+#endif
         {
             if (Delay >= _minDelay + _changeDelaySpeed)
                 ChangeDelay(-_changeDelaySpeed);
