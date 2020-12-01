@@ -60,6 +60,6 @@ public class AudioButton : MonoBehaviour
 
     private void LoadAudioState()
     {
-        _isAudioEnable = PlayerPrefs.GetInt("Audio") == 1;
+        _isAudioEnable = PlayerPrefs.GetInt("Audio", 1) == 1;
     }
 }

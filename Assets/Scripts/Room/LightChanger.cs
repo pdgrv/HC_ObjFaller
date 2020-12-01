@@ -11,12 +11,12 @@ public class LightChanger : MonoBehaviour
 
     private void Start()
     {
-        _light = GetComponent<Light>();    
+        _light = GetComponent<Light>();
     }
 
     public void Dim()
     {
-       // StartCoroutine(ChangeIntensity());
+        StartCoroutine(ChangeIntensity());
     }
 
     private IEnumerator ChangeIntensity()

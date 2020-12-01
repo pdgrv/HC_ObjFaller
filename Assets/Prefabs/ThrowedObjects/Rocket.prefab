@@ -143,12 +143,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _price: 500
   _icon: {fileID: 21300000, guid: fa31f4b00f4586f45a7f983652c64433, type: 3}
-  _isBuyed: 1
-  _isActivated: 1
+  _isBuyed: 0
+  _isActivated: 0
   Speed: 7
   _startScale: 0.3
   _increaseScaleSpeed: 1.2
-  _maxRotateSpeed: 90
+  _maxRotateSpeed: 180
   _tiltStep: -15
 --- !u!136 &4387063717122577040
 CapsuleCollider:
