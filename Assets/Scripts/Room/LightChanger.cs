@@ -16,7 +16,7 @@ public class LightChanger : MonoBehaviour
 
     public void Dim()
     {
-        StartCoroutine(ChangeIntensity());
+       // StartCoroutine(ChangeIntensity());
     }
 
     private IEnumerator ChangeIntensity()
