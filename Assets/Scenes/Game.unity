@@ -6150,7 +6150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _templates:
   - {fileID: 1944906939518331026, guid: 1347016e0872fba41adf7302288175b4, type: 3}
-  _platformCount: 30
+  _platformCount: 20
   _countIncreasing: 1
   _platformHeight: 0.45
   _angleStep: 4
