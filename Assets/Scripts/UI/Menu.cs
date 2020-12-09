@@ -21,9 +21,21 @@ public class Menu : MonoBehaviour
         _levelCompletePanel.UpdateInfo(IsWin, currentLevel, rewardAmount, percentOfLevelPassed);
     }
 
+    public void HideCompletePanel()
+    {
+        ShowGameplayBars();
+        _levelCompletePanel.gameObject.SetActive(false);
+    }
+
     public void HideGameplayBars()
     {
         _progressBar.SetActive(false);
         _throwerDelayBar.SetActive(false);
+    }
+
+    public void ShowGameplayBars()
+    {
+        _progressBar.SetActive(true);
+        _throwerDelayBar.SetActive(true);
     }
 }

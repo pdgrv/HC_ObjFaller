@@ -12,17 +12,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MovieProducer _movieProducer;
     [SerializeField] private PlayerMoney _playerMoney;
     [SerializeField] private int _rewardForPlatform;
+    [SerializeField] private Ads _ads;
 
     private int _currentLevel = 1;
     private int _percentOfLevelPassed;
     private int _platformsCount;
+    private int _restartsCount = 0;
 
     private int _totalReward
-    { 
+    {
         get
         {
             return _platformsCount * _rewardForPlatform;
-        } 
+        }
     }
 
     public event UnityAction<int> LevelChanged; // мб можно избавиться от ээтого события 
@@ -47,18 +49,61 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ++_restartsCount;
+
+        if (_currentLevel > 5)
+        {
+            if (_restartsCount >= 2)
+            {
+                _restartsCount = 0;
+                _ads.ShowInterstitial();
+            }
+        }
+        else
+        {
+            if (_restartsCount >= 3)
+            {
+                _restartsCount = 0;
+                _ads.ShowInterstitial();
+            }
+        }
+
+        LoadScene();
     }
 
-    public void NextLevel()
+    public void StartLevel()
     {
-        RestartLevel();
+        if (_currentLevel > 10)
+        {
+            if (_currentLevel % 3 == 0)
+                _ads.ShowInterstitial();
+        }
+        else
+        {
+            if (_currentLevel % 4 == 0)
+                _ads.ShowInterstitial();
+        }
+
+        LoadScene();
     }
 
     public void GameOver()
     {
         Debug.Log("Вы проиграли.");
         LoseLevel();
+    }
+
+    public void ResumeGame()
+    {
+        _objectThrower.GoThrow();
+        _menu.HideCompletePanel();
+    }
+
+    public void DoubleMoneyWon()
+    {
+        _playerMoney.AddMoney(_totalReward);
+
+        _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward * 2);
     }
 
     private void OnPlatformCountChanged(int value, int maxValue)
@@ -90,6 +135,11 @@ public class GameManager : MonoBehaviour
 
         _movieProducer.StartMovie();
         StartCoroutine(CompleteLevelAfterMovie());
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void SaveProgress()

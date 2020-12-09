@@ -205,7 +205,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2125666821}
-        m_MethodName: NextLevel
+        m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 160149637}
   - component: {fileID: 160149636}
   - component: {fileID: 160149635}
+  - component: {fileID: 160149639}
   - component: {fileID: 160149638}
   m_Layer: 5
   m_Name: ContinueButton
@@ -677,18 +678,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 160149636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2125666823}
-        m_MethodName: ShowRewarded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &160149636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,6 +732,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &160149639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160149633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2329375e85c897e4990e11ab486a43ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonReward: 0
+  _ads: {fileID: 2125666823}
 --- !u!1 &242455918
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +891,7 @@ GameObject:
   - component: {fileID: 255094885}
   - component: {fileID: 255094884}
   - component: {fileID: 255094883}
+  - component: {fileID: 255094887}
   - component: {fileID: 255094886}
   m_Layer: 5
   m_Name: RewardButton
@@ -958,18 +963,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 255094884}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2125666823}
-        m_MethodName: ShowRewarded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &255094884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,6 +1017,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &255094887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255094881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2329375e85c897e4990e11ab486a43ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonReward: 1
+  _ads: {fileID: 2125666823}
 --- !u!1 &257413854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12868,6 +12876,7 @@ MonoBehaviour:
   _movieProducer: {fileID: 825090593}
   _playerMoney: {fileID: 308164618}
   _rewardForPlatform: 100
+  _ads: {fileID: 0}
 --- !u!4 &2125666822
 Transform:
   m_ObjectHideFlags: 0
