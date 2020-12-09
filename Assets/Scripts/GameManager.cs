@@ -12,12 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MovieProducer _movieProducer;
     [SerializeField] private PlayerMoney _playerMoney;
     [SerializeField] private int _rewardForPlatform;
-    [SerializeField] private Ads _ads;
+    [SerializeField] private InterstitialAds _interstitialAds;
 
     private int _currentLevel = 1;
     private int _percentOfLevelPassed;
     private int _platformsCount;
-    private int _restartsCount = 0;
 
     private int _totalReward
     {
@@ -49,41 +48,11 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        ++_restartsCount;
-
-        if (_currentLevel > 5)
-        {
-            if (_restartsCount >= 2)
-            {
-                _restartsCount = 0;
-                _ads.ShowInterstitial();
-            }
-        }
-        else
-        {
-            if (_restartsCount >= 3)
-            {
-                _restartsCount = 0;
-                _ads.ShowInterstitial();
-            }
-        }
-
         LoadScene();
     }
 
     public void StartLevel()
     {
-        if (_currentLevel > 10)
-        {
-            if (_currentLevel % 3 == 0)
-                _ads.ShowInterstitial();
-        }
-        else
-        {
-            if (_currentLevel % 4 == 0)
-                _ads.ShowInterstitial();
-        }
-
         LoadScene();
     }
 
@@ -121,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
         _objectThrower.StopThrow();
         _menu.ShowCompletePanel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
+
+        _interstitialAds.ShowTick();
     }
 
     private void WinLevel()
@@ -163,5 +134,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => _movieProducer.IsMovieEnded);
 
         _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward);
+
+        _interstitialAds.ShowTick();
     }
 }
