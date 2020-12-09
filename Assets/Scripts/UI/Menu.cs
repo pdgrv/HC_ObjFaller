@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
         _levelCompletePanel.gameObject.SetActive(false);
     }
 
-    public void CompleteLevel(bool IsWin, int currentLevel, int rewardAmount = 0, int percentOfLevelPassed = 0)
+    public void ShowCompletePanel(bool IsWin, int currentLevel, int rewardAmount = 0, int percentOfLevelPassed = 0)
     {
         HideGameplayBars();
         _levelCompletePanel.gameObject.SetActive(true);

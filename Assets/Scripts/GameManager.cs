@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void LoseLevel()
     {
         _objectThrower.StopThrow();
-        _menu.CompleteLevel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
+        _menu.ShowCompletePanel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
     }
 
     private void WinLevel()
@@ -112,6 +112,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitUntil(() => _movieProducer.IsMovieEnded);
 
-        _menu.CompleteLevel(true, _currentLevel - 1, rewardAmount: _totalReward);
+        _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward);
     }
 }
