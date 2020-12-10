@@ -379,6 +379,8 @@ GameObject:
   - component: {fileID: 43325485}
   - component: {fileID: 43325487}
   - component: {fileID: 43325486}
+  - component: {fileID: 43325489}
+  - component: {fileID: 43325488}
   m_Layer: 5
   m_Name: RewardAmount
   m_TagString: Untagged
@@ -502,6 +504,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43325484}
   m_CullTransparentMesh: 0
+--- !u!111 &43325488
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43325484}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9887a52bfba964e42b533f12a3891d72, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9887a52bfba964e42b533f12a3891d72, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &43325489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43325484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1397a11026579b34eace59a3afa4d74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cascadeSpeed: 30
+  _rewardAmount: {fileID: 43325486}
+  _animation: {fileID: 43325488}
 --- !u!1 &44224058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &257413855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1238,7 +1271,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 136.96399, y: -61.34751}
-  m_SizeDelta: {x: 110, y: 430}
+  m_SizeDelta: {x: 115, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &266252460
 MonoBehaviour:
@@ -1898,13 +1931,15 @@ GameObject:
   - component: {fileID: 412298336}
   - component: {fileID: 412298335}
   - component: {fileID: 412298338}
+  - component: {fileID: 412298340}
+  - component: {fileID: 412298339}
   m_Layer: 5
   m_Name: LevelCompletePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &412298335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1979,9 +2014,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelLabel: {fileID: 800570587}
   _levelProgressLabel: {fileID: 378898236}
-  _rewardAmount: {fileID: 43325486}
   _winOptions: {fileID: 257413854}
   _loseOptions: {fileID: 1469432066}
+  _rewardAmount: {fileID: 43325489}
+  _openAnimation: {fileID: 412298339}
+--- !u!111 &412298339
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412298334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 735710ffd76c36f43830a43cdeb27d24, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 735710ffd76c36f43830a43cdeb27d24, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &412298340
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412298334}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &432827011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,7 +2928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5184643099cfe42418edd463636714fa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4650,7 +4714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap to play
+  m_text: tap and hold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -4859,13 +4923,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.81279266, b: 0.70096123, a: 1}
+  m_Color: {r: 0.9433962, g: 0.8933172, b: 0.5473478, a: 0.37254903}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5184643099cfe42418edd463636714fa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6374,12 +6438,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _templates:
   - {fileID: 1944906939518331026, guid: 1347016e0872fba41adf7302288175b4, type: 3}
-  _platformCount: 20
+  _platformCount: 19
   _countIncreasing: 1
   _platformHeight: 0.45
   _angleStep: 4
   _rotateSpeed: -35
-  _speedIncreasing: -1
+  _speedIncreasing: -0.7
   _shiftCount: 1
   _materialPool:
   - {fileID: 2100000, guid: fa21d1503fd7e994095c73adf12cdc82, type: 2}

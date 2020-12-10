@@ -10,6 +10,7 @@ public class LevelCompletePanel : MonoBehaviour
     [SerializeField] private GameObject _winOptions;
     [SerializeField] private GameObject _loseOptions;
     [SerializeField] private RewardRenderer _rewardAmount;
+    [SerializeField] private Animation _openAnimation;
 
     public void UpdateInfo(bool IsWin, int currentLevel, int rewardAmount, int percentOfLevelPassed)
     {
@@ -32,5 +33,8 @@ public class LevelCompletePanel : MonoBehaviour
         }
     }
 
-    
+    public void Show()
+    {
+        _openAnimation.Play();
+    }
 }
