@@ -12,7 +12,7 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
 
     private RewardType _currentRewardType;
 
-    private bool _isRewardedFinished = false;    
+    private bool _isRewardedFinished = false;
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
             }
 
             _isRewardedFinished = false;
-        }   
+        }
     }
 
     private void Initialize()
@@ -155,5 +155,3 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
         throw new System.NotImplementedException();
     }
 }
-
-public enum RewardType { REVIVE, BONUS };

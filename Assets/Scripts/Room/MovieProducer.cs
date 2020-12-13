@@ -32,8 +32,8 @@ public class MovieProducer : MonoBehaviour
         yield return new WaitForSeconds(_girlAnimDelay);
 
         _girl.RollOver();
-        //_lightChanger.Dim();
-        //_mainLightAnimation.Play();
+        //_lightChanger.Dim(); //заменен постобработкой
+        //_mainLightAnimation.Play(); //заменен Lightchangerom
 
         yield return new WaitForSeconds(_remainingMovieTime);
         IsMovieEnded = true;

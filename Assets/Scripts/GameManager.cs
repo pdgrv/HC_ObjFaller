@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        _objectThrower.GoThrow();
+        _objectThrower.AllowThrow();
         _menu.HideCompletePanel();
     }
 
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void LoseLevel()
     {
-        _objectThrower.StopThrow();
+        _objectThrower.ProhibitThrow();
         _menu.ShowCompletePanel(false, _currentLevel, percentOfLevelPassed: _percentOfLevelPassed);
 
         _interstitialAds.ShowTick();
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void WinLevel()
     {
-        _objectThrower.StopThrow();
+        _objectThrower.ProhibitThrow();
         _menu.HideGameplayBars();
         _playerMoney.AddMoney(_totalReward);
 

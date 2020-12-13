@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ObjectThrower : MonoBehaviour
 {
-    [SerializeField] private ThrowedItem _object;
+    [SerializeField] private ThrowedItem _currentTemplate;
     [SerializeField] private GameObject _container;
     [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
@@ -53,19 +53,19 @@ public class ObjectThrower : MonoBehaviour
 
     public void SetThrowedObject(ThrowedItem template)
     {
-        _object = template;
+        _currentTemplate = template;
 
         CleanPool();
         InitializePool();
     }
 
-    public void GoThrow()
+    public void AllowThrow()
     {
         _canThrow = true;
         _targetParticle.Play();
     }
 
-    public void StopThrow()
+    public void ProhibitThrow()
     {
         _canThrow = false;
         _targetParticle.Stop();
@@ -78,7 +78,7 @@ public class ObjectThrower : MonoBehaviour
     {
         for (int i = 0; i < _poolCapacity; i++)
         {
-            ThrowedItem newObject = Instantiate(_object, _container.transform);
+            ThrowedItem newObject = Instantiate(_currentTemplate, _container.transform);
             newObject.gameObject.SetActive(false);
 
             newObject.Init(_target);
