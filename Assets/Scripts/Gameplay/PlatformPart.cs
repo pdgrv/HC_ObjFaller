@@ -45,13 +45,16 @@ public class PlatformPart : MonoBehaviour
 
     private void BadCollision()
     {
-        if (--_durable <= 0)
-            _platform.GameOver();
+        if (_platform.IsActivated)
+        {
+            if (--_durable <= 0)
+                _platform.GameOver();
 
-        _badAnimation.Play();
-        _platform.PlayAudio(false);
+            _badAnimation.Play();
+            _platform.PlayAudio(false);
 
-        SetMaterial(_crackedMateial);
+            SetMaterial(_crackedMateial);
+        }
         //StartCoroutine(WaitAnimEnd());
     }
 
