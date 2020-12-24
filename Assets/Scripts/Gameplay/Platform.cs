@@ -13,6 +13,7 @@ public class Platform : MonoBehaviour
     private bool _isActivated;
 
     public int PartsCount => _platformParts.Count;
+    public bool IsActivated => _isActivated;
 
     public void Init(LevelGenerator levelGenerator, GameManager gameManager, PlatformAudio platformAudio)
     {
