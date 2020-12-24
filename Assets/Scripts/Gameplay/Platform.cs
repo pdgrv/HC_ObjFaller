@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour
     private LevelGenerator _levelGenerator;
     private GameManager _gameManager;
     private PlatformAudio _platformAudio;
+    private bool _isActivated;
 
     public int PartsCount => _platformParts.Count;
 
@@ -37,11 +38,14 @@ public class Platform : MonoBehaviour
 
     public void Destroy()
     {
-        _levelGenerator.RemovePlatform(this);
-        Destroy(gameObject);
-        //gameObject.SetActive(false);
+        if (_isActivated)
+        {
+            _levelGenerator.RemovePlatform(this);
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
 
-        _particleSystem.Play();
+            _particleSystem.Play();
+        }
     }
 
     public void GameOver()
@@ -52,5 +56,10 @@ public class Platform : MonoBehaviour
     public void PlayAudio(bool isGood)
     {
         _platformAudio.PlayAudio(isGood);
+    }
+
+    public void ActivatePlatform()
+    {
+        _isActivated = true;
     }
 }

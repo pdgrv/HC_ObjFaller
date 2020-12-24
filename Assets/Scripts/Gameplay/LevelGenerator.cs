@@ -63,6 +63,7 @@ public class LevelGenerator : MonoBehaviour
         RecalculateParametrs(levelNumber);
         GenerateLevel();
         RandomizeLevel();
+        _spawnedPlatforms[0].ActivatePlatform();
     }
 
     private void RecalculateParametrs(int levelNumber)
@@ -133,6 +134,9 @@ public class LevelGenerator : MonoBehaviour
 
     public void RemovePlatform(Platform platform)
     {
+        //if (_spawnedPlatforms.IndexOf(platform) < _spawnedPlatforms.Count)
+        _spawnedPlatforms[_spawnedPlatforms.IndexOf(platform) + 1]?.ActivatePlatform();
+
         _spawnedPlatforms.Remove(platform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
