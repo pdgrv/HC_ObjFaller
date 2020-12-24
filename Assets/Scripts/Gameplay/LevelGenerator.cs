@@ -134,8 +134,8 @@ public class LevelGenerator : MonoBehaviour
 
     public void RemovePlatform(Platform platform)
     {
-        //if (_spawnedPlatforms.IndexOf(platform) < _spawnedPlatforms.Count)
-        _spawnedPlatforms[_spawnedPlatforms.IndexOf(platform) + 1]?.ActivatePlatform();
+        if (_spawnedPlatforms.IndexOf(platform) < _spawnedPlatforms.Count - 1)
+            _spawnedPlatforms[_spawnedPlatforms.IndexOf(platform) + 1]?.ActivatePlatform();
 
         _spawnedPlatforms.Remove(platform);
 
