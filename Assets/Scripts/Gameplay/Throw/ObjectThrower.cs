@@ -13,7 +13,7 @@ public class ObjectThrower : MonoBehaviour
     [SerializeField] private Transform _target;
 
     private ThrowerDelay _throwerDelay;
-    private ParticleSystem _targetParticle;
+    private GameObject _targetVisual;
 
     private List<ThrowedItem> _objectPool = new List<ThrowedItem>();
 
@@ -23,7 +23,7 @@ public class ObjectThrower : MonoBehaviour
     private void Start()
     {
         _throwerDelay = GetComponent<ThrowerDelay>();
-        _targetParticle = _target.GetComponentInChildren<ParticleSystem>();
+        _targetVisual = _target.GetComponentInChildren<Light>().gameObject;
 
         _elapsedTime = _throwerDelay.Delay;
 
@@ -62,13 +62,13 @@ public class ObjectThrower : MonoBehaviour
     public void GoThrow()
     {
         _canThrow = true;
-        _targetParticle.Play();
+        _targetVisual.SetActive(true);
     }
 
     public void StopThrow()
     {
         _canThrow = false;
-        _targetParticle.Stop();
+        _targetVisual.SetActive(false);
 
         foreach (ThrowedItem throwedObject in _objectPool)
             throwedObject.gameObject.SetActive(false);
