@@ -11,6 +11,7 @@ public class ObjectThrower : MonoBehaviour
     [SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
     [SerializeField] private Transform _target;
+    [SerializeField] private HitParticle _hitParticle;
 
     private ThrowerDelay _throwerDelay;
     private GameObject _targetVisual;
@@ -81,7 +82,7 @@ public class ObjectThrower : MonoBehaviour
             ThrowedItem newObject = Instantiate(_object, _container.transform);
             newObject.gameObject.SetActive(false);
 
-            newObject.Init(_target);
+            newObject.Init(_target, _hitParticle);
             _objectPool.Add(newObject);
         }
     }
