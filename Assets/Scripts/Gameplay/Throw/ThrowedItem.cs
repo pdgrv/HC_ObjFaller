@@ -11,6 +11,7 @@ public abstract class ThrowedItem : SellableItem
     protected Transform Target;
 
     private Coroutine _increaseSizeJob;
+    private HitParticle _hitParticle;
 
     protected void OnEnable()
     {
@@ -28,13 +29,17 @@ public abstract class ThrowedItem : SellableItem
         transform.localScale = _startScale * Vector3.one;
     }
 
-    public void Init(Transform target)
+    public void Init(Transform target, HitParticle hitParticle)
     {
         Target = target;
+
+        _hitParticle = hitParticle;
     }
 
     public void Die()
     {
+        _hitParticle.Play(transform.position);
+
         gameObject.SetActive(false);
     }
 
