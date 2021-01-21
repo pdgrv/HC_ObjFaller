@@ -7,20 +7,17 @@ public class MovieProducer : MonoBehaviour
     [SerializeField] private FallingStar _fallingStar;
     [SerializeField] private Animator _cameraAnimator;
     [SerializeField] private Girl _girl;
-    //[SerializeField] private Animation _mainLightAnimation;
     [SerializeField] private LightChanger _lightChanger;
 
     [SerializeField] private float _cameraMoveDelay;
     [SerializeField] private float _girlAnimDelay;
     [SerializeField] private float _remainingMovieTime;
 
-    private Coroutine _movieJob;
-
     public bool IsMovieEnded { get; private set; } = false;
 
     public void StartMovie()
     {
-        _movieJob = StartCoroutine(Movie());
+        StartCoroutine(Movie());
     }
 
     private IEnumerator Movie()
@@ -33,7 +30,6 @@ public class MovieProducer : MonoBehaviour
 
         _girl.RollOver();
         //_lightChanger.Dim(); //заменен постобработкой
-        //_mainLightAnimation.Play(); //заменен Lightchangerom
 
         yield return new WaitForSeconds(_remainingMovieTime);
         IsMovieEnded = true;
