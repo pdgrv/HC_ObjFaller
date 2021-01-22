@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5342abdc251e8841a21392232635195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 0}
+  _currentTemplate: {fileID: 0}
   _container: {fileID: 355366128}
   _poolCapacity: 6
   _spawnArea: {fileID: 971361427}
@@ -2257,7 +2257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
-  - component: {fileID: 705507996}
   - component: {fileID: 705507997}
   m_Layer: 0
   m_Name: MainLight
@@ -2341,22 +2340,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -10, z: -5}
---- !u!111 &705507996
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705507993}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ef6ccdbe6bcc278489f99717d0396c66, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: ef6ccdbe6bcc278489f99717d0396c66, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &705507997
 MonoBehaviour:
   m_ObjectHideFlags: 0
