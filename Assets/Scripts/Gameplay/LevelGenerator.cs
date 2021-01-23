@@ -44,7 +44,7 @@ public class LevelGenerator : MonoBehaviour
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
     }
 
-    public Transform TryGetTopPlatformPosition()
+    public Transform TryGetTopPlatformTransform()
     {
         //if (transform.childCount <= 0)
         //    return null;

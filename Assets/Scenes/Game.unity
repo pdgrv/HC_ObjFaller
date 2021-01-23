@@ -2231,7 +2231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
-  _speed: 5
+  _speed: 0.5
 --- !u!114 &512764554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,7 +2846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
-  _speed: 3
+  _speed: 0.13
 --- !u!4 &773398847
 Transform:
   m_ObjectHideFlags: 0
@@ -9673,7 +9673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
-  _speed: 2.5
+  _speed: 0.09
 --- !u!1 &1037629594
 GameObject:
   m_ObjectHideFlags: 0
@@ -10177,7 +10177,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 512764551}
-        m_MethodName: GoThrow
+        m_MethodName: AllowThrow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22597,7 +22597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
-  _speed: 7
+  _speed: 0.5
 --- !u!1001 &2093901272
 PrefabInstance:
   m_ObjectHideFlags: 0
