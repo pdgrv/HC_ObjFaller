@@ -55,13 +55,5 @@ public class PlatformPart : MonoBehaviour
 
             SetMaterial(_crackedMateial);
         }
-        //StartCoroutine(WaitAnimEnd());
     }
-
-    //private IEnumerator WaitAnimEnd()
-    //{
-    //    yield return new WaitWhile(() => _badAnimation.isPlaying);
-
-    //    SetMaterial(_crackedMateial);
-    //}
 }
