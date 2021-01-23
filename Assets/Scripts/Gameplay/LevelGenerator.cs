@@ -61,6 +61,7 @@ public class LevelGenerator : MonoBehaviour
     {
         Clean();
         RecalculateParametrs(levelNumber);
+        MoveToHighestPoint();
         GenerateLevel();
         RandomizeLevel();
         _spawnedPlatforms[0].ActivatePlatform();
@@ -71,6 +72,11 @@ public class LevelGenerator : MonoBehaviour
         _platformCount += levelNumber * _countIncreasing;
         _rotateSpeed += levelNumber * _speedIncreasing;
         _shiftCount += (levelNumber / 10);
+    }
+
+    private void MoveToHighestPoint()
+    {
+        transform.position += new Vector3(0, PlatformsHeight, 0);
     }
 
     [ContextMenu("GenerateLevel")]
@@ -125,7 +131,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void AddPlatform(int platformNumber)
     {
-        var newPlatform = Instantiate(_currentTemplate, Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
+        var newPlatform = Instantiate(_currentTemplate, transform.position + Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
         newPlatform.Init(this, _gameManager, _platformAudio);
         _spawnedPlatforms.Add(newPlatform);
 
@@ -135,7 +141,8 @@ public class LevelGenerator : MonoBehaviour
     public void RemovePlatform(Platform platform)
     {
         _spawnedPlatforms.Remove(platform);
-        _spawnedPlatforms[0].ActivatePlatform();
+        if (_spawnedPlatforms.Count >= 1)
+            _spawnedPlatforms[0].ActivatePlatform();
 
         Destroy(platform.gameObject);
 

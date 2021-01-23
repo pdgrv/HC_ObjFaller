@@ -11,6 +11,7 @@ public class PlatformFollower : MonoBehaviour
 
     private void Start()
     {
+        transform.position += new Vector3(0, _levelGenerator.PlatformsHeight, 0);
         _offset = transform.position - _levelGenerator.TryGetTopPlatformTransform().position;
     }
 
