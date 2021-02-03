@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _speedIncreasing;
     [SerializeField] private int _shiftCount;
+    [SerializeField] private int _shiftCountIncreasingDivider = 10;
     [SerializeField] private List<Material> _materialPool;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private PlatformAudio _platformAudio;
@@ -46,11 +47,6 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform TryGetTopPlatformTransform()
     {
-        //if (transform.childCount <= 0)
-        //    return null;
-        //else
-        //    return transform.GetChild(0);
-
         if (_spawnedPlatforms.Count <= 0)
             return null;
         else
@@ -71,7 +67,7 @@ public class LevelGenerator : MonoBehaviour
     {
         _platformCount += levelNumber * _countIncreasing;
         _rotateSpeed += levelNumber * _speedIncreasing;
-        _shiftCount += (levelNumber / 10);
+        _shiftCount += (levelNumber / _shiftCountIncreasingDivider);
     }
 
     private void MoveToHighestPoint()
@@ -152,11 +148,6 @@ public class LevelGenerator : MonoBehaviour
     [ContextMenu("Clean")]
     private void Clean()
     {
-        //int childCount = transform.childCount;
-        //for (int i = childCount - 1; i >= 0; i--)
-        //{
-        //    DestroyImmediate(transform.GetChild(i).gameObject);
-        //}
         foreach (Platform platform in _spawnedPlatforms)
             DestroyImmediate(platform.gameObject);
 

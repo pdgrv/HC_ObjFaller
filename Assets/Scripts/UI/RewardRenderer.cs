@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RewardRenderer : MonoBehaviour
 {
-    [SerializeField] private int _cascadeSpeed;
+    [SerializeField] private float _cascadeSpeedMultiplier;
     [SerializeField] private TMP_Text _rewardAmount;
     [SerializeField] private Animation _animation;
 
@@ -16,9 +16,11 @@ public class RewardRenderer : MonoBehaviour
 
     private IEnumerator ShowReward(int reward)
     {
-        for (int i = 0; i < reward / _cascadeSpeed; i++)
+        int cascadeSpeed = (int)(reward * _cascadeSpeedMultiplier);
+
+        for (int i = 0; i < reward / cascadeSpeed; i++)
         {
-            _rewardAmount.text = "+" + (i * _cascadeSpeed).ToString();
+            _rewardAmount.text = "+" + (i * cascadeSpeed).ToString();
             yield return new WaitForFixedUpdate();
         }
 

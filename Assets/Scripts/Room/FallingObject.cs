@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class FallingStar : MonoBehaviour
+public class FallingObject : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private Transform _target;
@@ -14,7 +14,6 @@ public class FallingStar : MonoBehaviour
     [SerializeField] private float _fullSize;
     [SerializeField] private float _growSpeed;
 
-    //[SerializeField] private Transform _rotateAroundPoint;
     private AudioSource _audio;
 
     private GameObject _currentStar;

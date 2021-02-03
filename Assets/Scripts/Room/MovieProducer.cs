@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MovieProducer : MonoBehaviour
 {
-    [SerializeField] private FallingStar _fallingStar;
+    [SerializeField] private FallingObject _fallingStar;
     [SerializeField] private Animator _cameraAnimator;
     [SerializeField] private Girl _girl;
-    [SerializeField] private LightChanger _lightChanger;
 
     [SerializeField] private float _cameraMoveDelay;
     [SerializeField] private float _girlAnimDelay;
@@ -29,9 +28,8 @@ public class MovieProducer : MonoBehaviour
         yield return new WaitForSeconds(_girlAnimDelay);
 
         _girl.RollOver();
-        //_lightChanger.Dim(); //заменен постобработкой
 
         yield return new WaitForSeconds(_remainingMovieTime);
         IsMovieEnded = true;
-    }    
+    }
 }

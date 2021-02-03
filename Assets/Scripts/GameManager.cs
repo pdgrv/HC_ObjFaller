@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public event UnityAction<int> LevelChanged; // мб можно избавиться от ээтого события 
+    public event UnityAction<int> LevelChanged;
 
     private void Awake()
     {
