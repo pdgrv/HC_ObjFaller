@@ -30,38 +30,31 @@ public class PlatformPart : MonoBehaviour
     {
         if (other.TryGetComponent(out ThrowedItem throwedObject))
         {
-            throwedObject.Die();
-
-            if (_isEnemy)
+            if (_platform.IsActivated)
             {
-                BadCollision();
-                return;
-            }
+                throwedObject.Die();
 
-            _platform.PlayAudio(true);
-            _platform.Destroy();
+                if (_isEnemy)
+                {
+                    BadCollision();
+                    return;
+                }
+
+                _platform.PlayAudio(true);
+                _platform.Destroy();
+            }
         }
     }
 
     private void BadCollision()
     {
-        if (_platform.IsActivated)
-        {
-            if (--_durable <= 0)
-                _platform.GameOver();
+        if (--_durable <= 0)
+            _platform.GameOver();
 
-            _badAnimation.Play();
-            _platform.PlayAudio(false);
+        _badAnimation.Play();
+        _platform.PlayAudio(false);
 
-            SetMaterial(_crackedMateial);
-        }
-        //StartCoroutine(WaitAnimEnd());
+        SetMaterial(_crackedMateial);
+
     }
-
-    //private IEnumerator WaitAnimEnd()
-    //{
-    //    yield return new WaitWhile(() => _badAnimation.isPlaying);
-
-    //    SetMaterial(_crackedMateial);
-    //}
 }

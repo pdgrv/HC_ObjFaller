@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _speedIncreasing;
     [SerializeField] private int _shiftCount;
+    [SerializeField] private int _shiftCountIncreasingDivider = 10;
     [SerializeField] private List<Material> _materialPool;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private PlatformAudio _platformAudio;
@@ -44,13 +45,8 @@ public class LevelGenerator : MonoBehaviour
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
     }
 
-    public Transform TryGetTopPlatformPosition()
+    public Transform TryGetTopPlatformTransform()
     {
-        //if (transform.childCount <= 0)
-        //    return null;
-        //else
-        //    return transform.GetChild(0);
-
         if (_spawnedPlatforms.Count <= 0)
             return null;
         else
@@ -61,6 +57,7 @@ public class LevelGenerator : MonoBehaviour
     {
         Clean();
         RecalculateParametrs(levelNumber);
+        MoveToHighestPoint();
         GenerateLevel();
         RandomizeLevel();
         _spawnedPlatforms[0].ActivatePlatform();
@@ -70,7 +67,12 @@ public class LevelGenerator : MonoBehaviour
     {
         _platformCount += levelNumber * _countIncreasing;
         _rotateSpeed += levelNumber * _speedIncreasing;
-        _shiftCount += (levelNumber / 10);
+        _shiftCount += (levelNumber / _shiftCountIncreasingDivider);
+    }
+
+    private void MoveToHighestPoint()
+    {
+        transform.position += new Vector3(0, PlatformsHeight, 0);
     }
 
     [ContextMenu("GenerateLevel")]
@@ -125,7 +127,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void AddPlatform(int platformNumber)
     {
-        var newPlatform = Instantiate(_currentTemplate, Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
+        var newPlatform = Instantiate(_currentTemplate, transform.position + Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
         newPlatform.Init(this, _gameManager, _platformAudio);
         _spawnedPlatforms.Add(newPlatform);
 
@@ -134,10 +136,11 @@ public class LevelGenerator : MonoBehaviour
 
     public void RemovePlatform(Platform platform)
     {
-        if (_spawnedPlatforms.IndexOf(platform) < _spawnedPlatforms.Count - 1)
-            _spawnedPlatforms[_spawnedPlatforms.IndexOf(platform) + 1]?.ActivatePlatform();
-
         _spawnedPlatforms.Remove(platform);
+        if (_spawnedPlatforms.Count >= 1)
+            _spawnedPlatforms[0].ActivatePlatform();
+
+        Destroy(platform.gameObject);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
     }
@@ -145,11 +148,6 @@ public class LevelGenerator : MonoBehaviour
     [ContextMenu("Clean")]
     private void Clean()
     {
-        //int childCount = transform.childCount;
-        //for (int i = childCount - 1; i >= 0; i--)
-        //{
-        //    DestroyImmediate(transform.GetChild(i).gameObject);
-        //}
         foreach (Platform platform in _spawnedPlatforms)
             DestroyImmediate(platform.gameObject);
 

@@ -5,20 +5,22 @@ using UnityEngine;
 public class PlatformFollower : MonoBehaviour
 {
     [SerializeField] private LevelGenerator _levelGenerator;
-    [SerializeField] private float _speed = 5;
+    [SerializeField] private float _speed = 0.1f;
 
-    private float _offset;
+    private Vector3 _offset;
 
     private void Start()
     {
-        _offset = transform.position.y - _levelGenerator.TryGetTopPlatformPosition().position.y;
+        transform.position += new Vector3(0, _levelGenerator.PlatformsHeight, 0);
+        _offset = transform.position - _levelGenerator.TryGetTopPlatformTransform().position;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (_levelGenerator.TryGetTopPlatformPosition() != null && transform.position.y - _levelGenerator.TryGetTopPlatformPosition().position.y > _offset)
-        {
-            transform.position += Vector3.down * _speed * Time.deltaTime;
-        }
+        if (_levelGenerator.TryGetTopPlatformTransform() == null)
+            return;
+
+        Vector3 desiredPosition = _levelGenerator.TryGetTopPlatformTransform().position + _offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, _speed);
     }
 }

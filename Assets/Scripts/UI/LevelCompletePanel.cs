@@ -18,7 +18,6 @@ public class LevelCompletePanel : MonoBehaviour
         if (IsWin)
         {
             _levelProgressLabel.text = "WIN!";
-            //_rewardAmount.text = "+" + rewardAmount.ToString();
 
             _winOptions.SetActive(true);
             _loseOptions.SetActive(false);

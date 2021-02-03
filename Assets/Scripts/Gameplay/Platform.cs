@@ -39,14 +39,8 @@ public class Platform : MonoBehaviour
 
     public void Destroy()
     {
-        if (_isActivated)
-        {
-            _levelGenerator.RemovePlatform(this);
-            Destroy(gameObject);
-            //gameObject.SetActive(false);
-
-            _particleSystem.Play();
-        }
+        _levelGenerator.RemovePlatform(this);
+        _particleSystem.Play();
     }
 
     public void GameOver()

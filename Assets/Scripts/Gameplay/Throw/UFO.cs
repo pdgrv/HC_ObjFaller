@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UFO : ThrowedItem
 {
-    //сделать наклон по направлению движения
     [SerializeField] private float _maxRotateSpeed;
     [SerializeField] private float _tiltStep = 15f;
 
