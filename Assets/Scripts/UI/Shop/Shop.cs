@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private ItemView _template;
     [SerializeField] private Transform _throwedContainer;
     [SerializeField] private List<ThrowedItem> _throwedItems;
-    [SerializeField] private ObjectThrower _thrower;
+    [SerializeField] private Thrower _thrower;
     [SerializeField] private Transform _roomContainer;
     [SerializeField] private List<RoomItem> _roomItems;
     [SerializeField] private PlayerMoney _playerMoney;

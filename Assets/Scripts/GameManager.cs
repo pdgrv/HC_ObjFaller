@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private Menu _menu;
-    [SerializeField] private ObjectThrower _objectThrower;
+    [SerializeField] private Thrower _objectThrower;
     [SerializeField] private MovieProducer _movieProducer;
     [SerializeField] private PlayerMoney _playerMoney;
     [SerializeField] private int _rewardForPlatform;

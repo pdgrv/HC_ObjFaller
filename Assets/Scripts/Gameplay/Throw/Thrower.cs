@@ -4,11 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ObjectThrower : MonoBehaviour
+public class Thrower : MonoBehaviour
 {
     [SerializeField] private ThrowedItem _currentTemplate;
-    [SerializeField] private GameObject _container;
-    [SerializeField] private int _poolCapacity;
+    [SerializeField] private ThrowerPool _pool;
+    //[SerializeField] private Transform _pool;
+    //[SerializeField] private int _poolCapacity;
     [SerializeField] private Transform _spawnArea;
     [SerializeField] private Transform _target;
     [SerializeField] private HitParticle _hitParticle;
@@ -16,7 +17,7 @@ public class ObjectThrower : MonoBehaviour
     private ThrowerDelay _throwerDelay;
     private GameObject _targetVisual;
 
-    private List<ThrowedItem> _objectPool = new List<ThrowedItem>();
+    //private List<ThrowedItem> _objectPool = new List<ThrowedItem>();
 
     private bool _canThrow = true;
     private float _elapsedTime;
@@ -28,7 +29,8 @@ public class ObjectThrower : MonoBehaviour
 
         _elapsedTime = _throwerDelay.Delay;
 
-        InitializePool();
+        //InitializePool();
+        _pool.InitializePool(_currentTemplate, _target, _hitParticle);
     }
 
     private void Update()
@@ -56,8 +58,9 @@ public class ObjectThrower : MonoBehaviour
     {
         _currentTemplate = template;
 
-        CleanPool();
-        InitializePool();
+        //CleanPool();
+        //InitializePool();
+        _pool.InitializePool(template, _target, _hitParticle);
     }
 
     public void AllowThrow()
@@ -71,37 +74,36 @@ public class ObjectThrower : MonoBehaviour
         _canThrow = false;
         _targetVisual.SetActive(false);
 
-        foreach (ThrowedItem throwedObject in _objectPool)
-            throwedObject.gameObject.SetActive(false);
+        _pool.DisableAllObjects();
+        //foreach (ThrowedItem throwedObject in _objectPool)
+        //    throwedObject.gameObject.SetActive(false);
     }
 
-    private void InitializePool()
-    {
-        for (int i = 0; i < _poolCapacity; i++)
-        {
-            ThrowedItem newObject = Instantiate(_currentTemplate, _container.transform);
-            newObject.gameObject.SetActive(false);
+    //private void InitializePool()
+    //{
+    //    for (int i = 0; i < _poolCapacity; i++)
+    //    {
+    //        ThrowedItem newObject = Instantiate(_currentTemplate, _pool);
+    //        newObject.gameObject.SetActive(false);
 
-            newObject.Init(_target, _hitParticle);
-            _objectPool.Add(newObject);
-        }
-    }
+    //        newObject.Init(_target, _hitParticle);
+    //        _objectPool.Add(newObject);
+    //    }
+    //}
 
-    private void CleanPool()
-    {
-        foreach (var item in _objectPool)
-        {
-            Destroy(item.gameObject);
-        }
-        _objectPool.Clear();
-    }
+    //private void CleanPool()
+    //{
+    //    foreach (var item in _objectPool)
+    //    {
+    //        Destroy(item.gameObject);
+    //    }
+    //    _objectPool.Clear();
+    //}
 
     private void Throw()
     {
         Vector3 spawnPoint = RandomPointInArea(_spawnArea);
-        ThrowedItem throwedObject = _objectPool.First(p => p.gameObject.activeSelf == false);
-        if (throwedObject == null)
-            Debug.Log("no free object in objectpool");
+        ThrowedItem throwedObject = _pool.GetAvailableObject();
 
         throwedObject.transform.position = spawnPoint;
 
