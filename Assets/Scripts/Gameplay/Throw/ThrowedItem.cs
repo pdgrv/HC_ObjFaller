@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ThrowedItem : SellableItem
@@ -36,7 +35,7 @@ public abstract class ThrowedItem : SellableItem
         _hitParticle = hitParticle;
     }
 
-    public void Die()
+    public void Hit()
     {
         _hitParticle.Play(transform.position);
 

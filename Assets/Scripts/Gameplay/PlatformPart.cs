@@ -32,7 +32,7 @@ public class PlatformPart : MonoBehaviour
         {
             if (_platform.IsActivated)
             {
-                throwedObject.Die();
+                throwedObject.Hit();
 
                 if (_isEnemy)
                 {
