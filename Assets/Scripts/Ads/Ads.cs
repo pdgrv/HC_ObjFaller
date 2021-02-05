@@ -6,8 +6,9 @@ using AppodealAds.Unity.Common;
 
 public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListener
 {
-    private const string APP_KEY = "6dabc23ec53d5fbd102fa046089c2f77ea861930b287a27c";
+    private const string APP_KEY = "aeb1d463c13e2661e73d2c88da7e3024671024512888152d";
 
+    [SerializeField] private bool _isTesting = false;
     [SerializeField] private GameManager _gameManager;
 
     private RewardType _currentRewardType;
@@ -35,7 +36,6 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
                     _gameManager.DoubleMoneyWon();
                     break;
                 default:
-                    Debug.Log("switch eat shii");
                     break;
             }
 
@@ -45,7 +45,7 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
 
     private void Initialize()
     {
-        Appodeal.setTesting(true);
+        Appodeal.setTesting(_isTesting);
         Appodeal.muteVideosIfCallsMuted(true);
 
         Appodeal.disableLocationPermissionCheck();
