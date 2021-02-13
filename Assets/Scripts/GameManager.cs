@@ -65,9 +65,9 @@ public class GameManager : MonoBehaviour
 
     public void DoubleMoneyWon()
     {
-        _playerMoney.AddMoney(_totalReward);
+        _playerMoney.AddMoney(_totalReward * 2);
 
-        _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward * 2);
+        _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward * 3);
     }
 
     private void OnPlatformCountChanged(int value, int maxValue)
