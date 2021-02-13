@@ -6,7 +6,7 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private ItemView _template;
     [SerializeField] private Transform _throwedContainer;
-    [SerializeField] private List<ThrowedItem> _throwedItems;
+    [SerializeField] private List<ThrowedObject> _throwedItems;
     [SerializeField] private Thrower _thrower;
     [SerializeField] private Transform _roomContainer;
     [SerializeField] private List<RoomItem> _roomItems;
@@ -82,9 +82,9 @@ public class Shop : MonoBehaviour
 
     private void TryActivateItem(SellableItem item)
     {
-        if (item is ThrowedItem)
+        if (item is ThrowedObject)
         {
-            ThrowedItem upItem = item as ThrowedItem;
+            ThrowedObject upItem = item as ThrowedObject;
 
             _thrower.SetThrowedObject(upItem);
 
@@ -124,7 +124,7 @@ public class Shop : MonoBehaviour
         PlayerPrefs.SetInt("CurrentThrowedItem", _currentThrowedItem);
 
         string buyedThrowedItemBools = "";
-        foreach (ThrowedItem item in _throwedItems)
+        foreach (ThrowedObject item in _throwedItems)
         {
             if (item.IsBuyed)
                 buyedThrowedItemBools += 1;

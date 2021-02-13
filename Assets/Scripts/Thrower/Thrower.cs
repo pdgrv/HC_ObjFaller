@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Thrower : MonoBehaviour
 {
-    [SerializeField] private ThrowedItem _currentTemplate;
+    [SerializeField] private ThrowedObject _currentTemplate;
     [SerializeField] private ThrowerPool _pool;
     [SerializeField] private Transform _spawnArea;
     [SerializeField] private Transform _target;
@@ -46,7 +46,7 @@ public class Thrower : MonoBehaviour
         }
     }
 
-    public void SetThrowedObject(ThrowedItem template)
+    public void SetThrowedObject(ThrowedObject template)
     {
         _currentTemplate = template;
 
@@ -70,7 +70,7 @@ public class Thrower : MonoBehaviour
     private void Throw()
     {
         Vector3 spawnPoint = RandomPointInArea(_spawnArea);
-        ThrowedItem throwedObject = _pool.GetAvailableObject();
+        ThrowedObject throwedObject = _pool.GetAvailableObject();
 
         throwedObject.transform.position = spawnPoint;
 

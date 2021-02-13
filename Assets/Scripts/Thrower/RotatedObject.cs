@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Star : ThrowedItem
+public class RotatedObject : ThrowedObject
 {
     [SerializeField] private float _maxRotateSpeed;
 
