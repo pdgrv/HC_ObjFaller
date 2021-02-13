@@ -46,11 +46,6 @@ public class GameManager : MonoBehaviour
         _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;
     }
 
-    public void RestartLevel()
-    {
-        LoadScene();
-    }
-
     public void StartLevel()
     {
         LoadScene();
