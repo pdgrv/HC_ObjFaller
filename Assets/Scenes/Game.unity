@@ -205,7 +205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2125666821}
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -8605,7 +8605,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2125666821}
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -8747,7 +8747,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 512764551}
-        m_MethodName: StopThrow
+        m_MethodName: ProhibitThrow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16058,7 +16058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _templates:
-  - {fileID: 1944906939518331026, guid: a336898b2d4f53d4396c6fe2b3956762, type: 3}
+  - {fileID: 6762362916439200004, guid: 94885efc9e81eae4f82368fbd6b63515, type: 3}
   _platformCount: 14
   _countIncreasing: 1
   _platformHeight: 0.47
@@ -16074,7 +16074,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7c0f298904b6624448dc2fb182248f90, type: 2}
   - {fileID: 2100000, guid: 92ee95ace87edf8439641facfe429f00, type: 2}
   - {fileID: 2100000, guid: 61999d75914e4b14f89306255504dee1, type: 2}
-  _game: {fileID: 0}
+  _game: {fileID: 2125666821}
   _platformAudio: {fileID: 1566236571}
 --- !u!4 &1566236569
 Transform:
