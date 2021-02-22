@@ -205,7 +205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2125666821}
+      - m_Target: {fileID: 0}
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -8605,7 +8605,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2125666821}
+      - m_Target: {fileID: 0}
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -9999,7 +9999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062e2c36086a4fc47b7101c084861dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 2125666821}
+  _game: {fileID: 2125666821}
   _targetLevel: 10
 --- !u!114 &1106525829
 MonoBehaviour:
@@ -15480,7 +15480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2b942d1ef83fd49b86cd675aa6a33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 2125666821}
+  _game: {fileID: 2125666821}
   _currentLevel: {fileID: 1805489354}
   _nextLevel: {fileID: 242455920}
 --- !u!114 &1428061689
@@ -16074,7 +16074,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7c0f298904b6624448dc2fb182248f90, type: 2}
   - {fileID: 2100000, guid: 92ee95ace87edf8439641facfe429f00, type: 2}
   - {fileID: 2100000, guid: 61999d75914e4b14f89306255504dee1, type: 2}
-  _gameManager: {fileID: 2125666821}
+  _game: {fileID: 0}
   _platformAudio: {fileID: 1566236571}
 --- !u!4 &1566236569
 Transform:
@@ -17964,11 +17964,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125666822}
-  - component: {fileID: 2125666821}
   - component: {fileID: 2125666823}
   - component: {fileID: 2125666824}
+  - component: {fileID: 2125666821}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17983,7 +17983,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125666820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b87cab2e44a8b449934654932ad3f64, type: 3}
+  m_Script: {fileID: 11500000, guid: efc6c14522b63d2408882dd04ccc4097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _levelGenerator: {fileID: 1566236568}
@@ -18021,7 +18021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTesting: 0
-  _gameManager: {fileID: 2125666821}
+  _game: {fileID: 2125666821}
 --- !u!114 &2125666824
 MonoBehaviour:
   m_ObjectHideFlags: 0

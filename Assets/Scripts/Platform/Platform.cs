@@ -7,17 +7,17 @@ public class Platform : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
 
     private LevelGenerator _levelGenerator;
-    private GameManager _gameManager;
+    private Game _game;
     private PlatformAudio _platformAudio;
     private bool _isActivated;
 
     public int PartsCount => _platformParts.Count;
     public bool IsActivated => _isActivated;
 
-    public void Init(LevelGenerator levelGenerator, GameManager gameManager, PlatformAudio platformAudio)
+    public void Init(LevelGenerator levelGenerator, Game game, PlatformAudio platformAudio)
     {
         _levelGenerator = levelGenerator;
-        _gameManager = gameManager;
+        _game = game;
         _platformAudio = platformAudio;
     }
 
@@ -44,7 +44,7 @@ public class Platform : MonoBehaviour
 
     public void GameOver()
     {
-        _gameManager.GameOver();
+        _game.GameOver();
     }
 
     public void PlayAudio(bool isGood)

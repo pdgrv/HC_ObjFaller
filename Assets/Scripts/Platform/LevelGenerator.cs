@@ -15,7 +15,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _shiftCount;
     [SerializeField] private int _shiftCountIncreasingDivider = 10;
     [SerializeField] private List<Material> _materialPool;
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Game _game;
     [SerializeField] private PlatformAudio _platformAudio;
 
     private Platform _currentTemplate;
@@ -128,7 +128,7 @@ public class LevelGenerator : MonoBehaviour
     private void AddPlatform(int platformNumber)
     {
         var newPlatform = Instantiate(_currentTemplate, transform.position + Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
-        newPlatform.Init(this, _gameManager, _platformAudio);
+        newPlatform.Init(this, _game, _platformAudio);
         _spawnedPlatforms.Add(newPlatform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);

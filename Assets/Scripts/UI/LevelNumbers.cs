@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class LevelNumbers : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Game _game;
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _nextLevel;
 
     private void OnEnable()
     {
-        _gameManager.LevelChanged += OnLevelChanged;
+        _game.LevelChanged += OnLevelChanged;
     }
 
     private void OnDisable()
     {
-        _gameManager.LevelChanged -= OnLevelChanged;
+        _game.LevelChanged -= OnLevelChanged;
     }
 
     private void OnLevelChanged(int value)

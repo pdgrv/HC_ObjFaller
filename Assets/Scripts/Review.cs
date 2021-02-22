@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Review : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Game _game;
     [SerializeField] private int _targetLevel = 5;
 
     private ReviewManager _reviewManager;
@@ -12,12 +12,12 @@ public class Review : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameManager.LevelChanged += OnLevelChanged;
+        _game.LevelChanged += OnLevelChanged;
     }
 
     private void OnDisable()
     {
-        _gameManager.LevelChanged -= OnLevelChanged;
+        _game.LevelChanged -= OnLevelChanged;
     }
 
     private void OnLevelChanged(int level)
