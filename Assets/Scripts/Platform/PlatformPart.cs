@@ -1,24 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer), typeof(Animation))]
+[RequireComponent(typeof(MeshRenderer))]
 public class PlatformPart : MonoBehaviour
 {
-    [SerializeField] private Platform _platform;
-    [SerializeField] private bool _isEnemy = false;
-    [SerializeField] private int _durable = 1;
-    [SerializeField] private Material _crackedMateial;
-
-    private Animation _badAnimation;
-
-    public bool IsEnemy => _isEnemy;
+    [SerializeField] protected Platform Platform;
+    [SerializeField] protected int Durable = 1;
 
     private void Start()
     {
-        _badAnimation = GetComponent<Animation>();
-
-        _platform = GetComponentInParent<Platform>();
+        Platform = GetComponentInParent<Platform>();
     }
 
     public void SetMaterial(Material mat)
@@ -30,31 +20,18 @@ public class PlatformPart : MonoBehaviour
     {
         if (other.TryGetComponent(out ThrowedObject throwedObject))
         {
-            if (_platform.IsActivated)
+            if (Platform.IsActivated)
             {
                 throwedObject.Hit();
 
-                if (_isEnemy)
-                {
-                    BadCollision();
-                    return;
-                }
-
-                _platform.PlayAudio(true);
-                _platform.Destroy();
+                Collision();
             }
         }
     }
 
-    private void BadCollision()
+    protected virtual void Collision()
     {
-        if (--_durable <= 0)
-            _platform.GameOver();
-
-        _badAnimation.Play();
-        _platform.PlayAudio(false);
-
-        SetMaterial(_crackedMateial);
-
+        Platform.PlayAudio(true);
+        Platform.Destroy();
     }
 }

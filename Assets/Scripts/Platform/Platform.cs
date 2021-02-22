@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour
     {
         foreach (PlatformPart part in _platformParts)
         {
-            if (!part.IsEnemy)
+            if (!(part is BadPlatformPart))
             {
                 part.SetMaterial(mat);
 
