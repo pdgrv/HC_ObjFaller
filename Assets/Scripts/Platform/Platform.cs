@@ -19,6 +19,7 @@ public class Platform : MonoBehaviour
         _levelGenerator = levelGenerator;
         _game = game;
         _platformAudio = platformAudio;
+        _particleSystem.transform.parent = null;
     }
 
     public void SetMaterial(Material mat)
@@ -29,9 +30,7 @@ public class Platform : MonoBehaviour
             {
                 part.SetMaterial(mat);
 
-                var particleMain = _particleSystem.main;
-                particleMain.startColor = mat.color;
-                _particleSystem.transform.parent = null;
+                SetParticleColor(mat.color);
             }
         }
     }
@@ -55,5 +54,11 @@ public class Platform : MonoBehaviour
     public void ActivatePlatform()
     {
         _isActivated = true;
+    }
+
+    private void SetParticleColor(Color color)
+    {
+        var particleMain = _particleSystem.main;
+        particleMain.startColor = color;        
     }
 }
