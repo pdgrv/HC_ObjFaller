@@ -65,8 +65,6 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
 
         if (Appodeal.isLoaded(Appodeal.REWARDED_VIDEO))
             Appodeal.show(Appodeal.REWARDED_VIDEO);
-        //как-то обрабатывать событие если реклама не загружена ( или скипнута ), например отключен интернет? 
-        // + уведомлять игрока
     }
 
     public void onRewardedVideoLoaded(bool precache)
