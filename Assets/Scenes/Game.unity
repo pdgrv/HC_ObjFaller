@@ -1772,7 +1772,7 @@ GameObject:
   - component: {fileID: 355366129}
   - component: {fileID: 355366130}
   m_Layer: 0
-  m_Name: Pool
+  m_Name: ThrowerPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
