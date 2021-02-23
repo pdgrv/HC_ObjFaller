@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button), typeof(Image))]
@@ -19,7 +16,7 @@ public class AudioButton : MonoBehaviour
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
         LoadAudioState();
-        CheckAudioState();
+        ChangeAudioState();
     }
 
     private void OnEnable()
@@ -35,11 +32,11 @@ public class AudioButton : MonoBehaviour
     private void OnButtonClick()
     {
         _isAudioEnable = !_isAudioEnable;
-        CheckAudioState();
+        ChangeAudioState();
         SaveAudioState();
     }
 
-    private void CheckAudioState()
+    private void ChangeAudioState()
     {
         if (_isAudioEnable)
         {
