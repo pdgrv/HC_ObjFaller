@@ -9,6 +9,7 @@ public class FallingObject : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Girl _girl;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _fullSize;
