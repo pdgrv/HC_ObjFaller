@@ -38,22 +38,23 @@ public class Game : MonoBehaviour
     private void OnEnable()
     {
         _levelGenerator.PlatformCountChanged += OnPlatformCountChanged;
+        PlatformEventsHandler.BadPlatformDestroyed += OnBadPlatformDestroyed;
     }
 
     private void OnDisable()
     {
         _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;
+        PlatformEventsHandler.BadPlatformDestroyed -= OnBadPlatformDestroyed;
+    }
+
+    private void OnBadPlatformDestroyed()
+    {
+        LoseLevel();
     }
 
     public void StartLevel()
     {
         LoadScene();
-    }
-
-    public void GameOver()
-    {
-        Debug.Log("Вы проиграли.");
-        LoseLevel();
     }
 
     public void ResumeGame()

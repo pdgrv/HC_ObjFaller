@@ -15,11 +15,11 @@ public class BadPlatformPart : PlatformPart
     protected override void Collision()
     {
         if (--Durable <= 0)
-            Platform.GameOver();
+            PlatformEventsHandler.RaiseBadPlatformDestroyed();
+
+        PlatformEventsHandler.RaiseBadPlatformHit();
 
         _badAnimation.Play();
-        Platform.PlayAudio(false);
-
         SetMaterial(_crackedMateial);
     }
 }

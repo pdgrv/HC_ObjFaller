@@ -31,7 +31,6 @@ public class PlatformPart : MonoBehaviour
 
     protected virtual void Collision()
     {
-        Platform.PlayAudio(true);
         Platform.Destroy();
     }
 }

@@ -6,19 +6,13 @@ public class Platform : MonoBehaviour
     [SerializeField] private List<PlatformPart> _platformParts;
     [SerializeField] private ParticleSystem _particleSystem;
 
-    private LevelGenerator _levelGenerator;
-    private Game _game;
-    private PlatformAudio _platformAudio;
     private bool _isActivated;
 
     public int PartsCount => _platformParts.Count;
     public bool IsActivated => _isActivated;
 
-    public void Init(LevelGenerator levelGenerator, Game game, PlatformAudio platformAudio)
+    public void OnEnable()
     {
-        _levelGenerator = levelGenerator;
-        _game = game;
-        _platformAudio = platformAudio;
         _particleSystem.transform.parent = null;
     }
 
@@ -37,18 +31,8 @@ public class Platform : MonoBehaviour
 
     public void Destroy()
     {
-        _levelGenerator.RemovePlatform(this);
+        PlatformEventsHandler.RaisePlatformDestroyed(this);
         _particleSystem.Play();
-    }
-
-    public void GameOver()
-    {
-        _game.GameOver();
-    }
-
-    public void PlayAudio(bool isGood)
-    {
-        _platformAudio.PlayAudio(isGood);
     }
 
     public void ActivatePlatform()
@@ -59,6 +43,6 @@ public class Platform : MonoBehaviour
     private void SetParticleColor(Color color)
     {
         var particleMain = _particleSystem.main;
-        particleMain.startColor = color;        
+        particleMain.startColor = color;
     }
 }
