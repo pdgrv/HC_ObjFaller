@@ -51,6 +51,16 @@ public class Game : MonoBehaviour
     {
         LoseLevel();
     }
+    private void OnPlatformCountChanged(int value, int maxValue)
+    {
+        _percentOfLevelPassed = (int)((float)value / maxValue * 100);
+        _platformsCount = maxValue;
+
+        if (value >= maxValue)
+        {
+            WinLevel();
+        }
+    }
 
     public void StartLevel()
     {
@@ -68,17 +78,6 @@ public class Game : MonoBehaviour
         _playerMoney.AddMoney(_totalReward * 2);
 
         _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward * 3);
-    }
-
-    private void OnPlatformCountChanged(int value, int maxValue)
-    {
-        _percentOfLevelPassed = (int)((float)value / maxValue * 100);
-        _platformsCount = maxValue;
-
-        if (value >= maxValue)
-        {
-            WinLevel();
-        }
     }
 
     private void LoseLevel()
@@ -116,12 +115,6 @@ public class Game : MonoBehaviour
     private void LoadProgress()
     {
         _currentLevel = PlayerPrefs.GetInt("Level", 1);
-    }
-
-    [ContextMenu("DeleteSaves")]
-    private void DeleteSaves()
-    {
-        PlayerPrefs.DeleteAll();
     }
 
     private IEnumerator CompleteLevelAfterMovie()
