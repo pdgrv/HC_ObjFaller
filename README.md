@@ -1,4 +1,4 @@
-# StarfallDreamer - my current HyperCasual game i'm working on right now.
+# StarfallDreamer - my little HyperCasual game RELEASED
 
 https://play.google.com/store/apps/details?id=ru.IJunior.StarfallDreamer2
 
