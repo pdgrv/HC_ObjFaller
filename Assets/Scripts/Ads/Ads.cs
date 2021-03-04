@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
@@ -9,7 +8,7 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
     private const string APP_KEY = "aeb1d463c13e2661e73d2c88da7e3024671024512888152d";
 
     [SerializeField] private bool _isTesting = false;
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Game _game;
 
     private RewardType _currentRewardType;
 
@@ -30,10 +29,10 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
             switch (_currentRewardType)
             {
                 case RewardType.REVIVE:
-                    _gameManager.ResumeGame();
+                    _game.ResumeGame();
                     break;
                 case RewardType.BONUS:
-                    _gameManager.DoubleMoneyWon();
+                    _game.DoubleMoneyWon();
                     break;
                 default:
                     break;
@@ -66,8 +65,6 @@ public class Ads : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListe
 
         if (Appodeal.isLoaded(Appodeal.REWARDED_VIDEO))
             Appodeal.show(Appodeal.REWARDED_VIDEO);
-        //как-то обрабатывать событие если реклама не загружена ( или скипнута ), например отключен интернет? 
-        // + уведомлять игрока
     }
 
     public void onRewardedVideoLoaded(bool precache)

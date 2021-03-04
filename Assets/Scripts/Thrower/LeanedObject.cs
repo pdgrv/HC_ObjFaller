@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UFO : ThrowedItem
+public class LeanedObject : ThrowedObject
 {
     [SerializeField] private float _maxRotateSpeed;
     [SerializeField] private float _tiltStep = 15f;

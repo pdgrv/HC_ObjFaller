@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class ThrowedItem : SellableItem
+public abstract class ThrowedObject : SellableItem
 {
     [SerializeField] protected float Speed = 7f;
     [SerializeField] private float _startScale = 0.3f;

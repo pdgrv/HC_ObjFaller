@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] private ItemView _template;
     [SerializeField] private Transform _throwedContainer;
-    [SerializeField] private List<ThrowedItem> _throwedItems;
+    [SerializeField] private List<ThrowedObject> _throwedItems;
     [SerializeField] private Thrower _thrower;
     [SerializeField] private Transform _roomContainer;
     [SerializeField] private List<RoomItem> _roomItems;
@@ -41,7 +40,7 @@ public class Shop : MonoBehaviour
             AddItem(item, _roomContainer, _roomViewsList);
         }
 
-        LoadItems();
+        LoadAllItems();
         TryActivateItem(_throwedItems[_currentThrowedItem]);
         ReRenderAll();
     }
@@ -82,9 +81,9 @@ public class Shop : MonoBehaviour
 
     private void TryActivateItem(SellableItem item)
     {
-        if (item is ThrowedItem)
+        if (item is ThrowedObject)
         {
-            ThrowedItem upItem = item as ThrowedItem;
+            ThrowedObject upItem = item as ThrowedObject;
 
             _thrower.SetThrowedObject(upItem);
 
@@ -103,7 +102,7 @@ public class Shop : MonoBehaviour
             upItem.TryRender();
         }
 
-        SaveItems();
+        SaveAllItems();
     }
 
     private void ReRenderAll()
@@ -119,56 +118,46 @@ public class Shop : MonoBehaviour
         }
     }
 
-    private void SaveItems()
+    private void SaveAllItems()
     {
         PlayerPrefs.SetInt("CurrentThrowedItem", _currentThrowedItem);
 
-        string buyedThrowedItemBools = "";
-        foreach (ThrowedItem item in _throwedItems)
-        {
-            if (item.IsBuyed)
-                buyedThrowedItemBools += 1;
-            else
-                buyedThrowedItemBools += 0;
-        }
-
-        PlayerPrefs.SetString("BuyedThrowedItems", buyedThrowedItemBools);
-
-        string buyedRoomItemsBools = "";
-        foreach (RoomItem item in _roomItems)
-        {
-            if (item.IsBuyed)
-                buyedRoomItemsBools += 1;
-            else
-                buyedRoomItemsBools += 0;
-        }
-
-        PlayerPrefs.SetString("BuyedRoomItems", buyedRoomItemsBools);
+        SaveItems("BuyedThrowedItems", _throwedItems);
+        SaveItems("BuyesRoomItems", _roomItems);
     }
 
-    private void LoadItems()
+    private void SaveItems<T>(string key, List<T> items) where T : SellableItem
+    {
+        string buyedItemBools = "";
+        foreach (T item in items)
+        {
+            if (item.IsBuyed)
+                buyedItemBools += 1;
+            else
+                buyedItemBools += 0;
+        }
+
+        PlayerPrefs.SetString(key, buyedItemBools);
+    }
+
+    private void LoadAllItems()
     {
         _currentThrowedItem = PlayerPrefs.GetInt("CurrentThrowedItem");
 
-        string buyedThrowedItemBools = PlayerPrefs.GetString("BuyedThrowedItems");
+        LoadItems("BuyedThrowedItems", _throwedItems);
+        LoadItems("BuyesRoomItems", _roomItems);
+    }
 
-        if (!string.IsNullOrEmpty(buyedThrowedItemBools))
+    private void LoadItems<T>(string key, List<T> items) where T : SellableItem
+    {
+        string buyedItemBools = PlayerPrefs.GetString(key);
+
+        if (!string.IsNullOrEmpty(buyedItemBools))
         {
-            for (int i = 0; i < buyedThrowedItemBools.Length; i++)
+            for (int i = 0; i < buyedItemBools.Length; i++)
             {
-                if (buyedThrowedItemBools[i] == '1')
-                    _throwedItems[i].Buy();
-            }
-        }
-
-        string buyedRoomItemBools = PlayerPrefs.GetString("BuyedRoomItems");
-
-        if (!string.IsNullOrEmpty(buyedRoomItemBools))
-        {
-            for (int i = 0; i < buyedRoomItemBools.Length; i++)
-            {
-                if (buyedRoomItemBools[i] == '1')
-                    _roomItems[i].Buy();
+                if (buyedItemBools[i] == '1')
+                    items[i].Buy();
             }
         }
     }

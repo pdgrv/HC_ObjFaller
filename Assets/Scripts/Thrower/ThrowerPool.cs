@@ -6,15 +6,15 @@ public class ThrowerPool : MonoBehaviour
 {
     [SerializeField] private int _poolCapacity = 7;
 
-    private List<ThrowedItem> _objectPool = new List<ThrowedItem>();
+    private List<ThrowedObject> _objectPool = new List<ThrowedObject>();
 
-    public void InitializePool(ThrowedItem template, Transform target, HitParticle hitParticle)
+    public void InitializePool(ThrowedObject template, Transform target, HitParticle hitParticle)
     {
         CleanPool();
 
         for (int i = 0; i < _poolCapacity; i++)
         {
-            ThrowedItem newObject = Instantiate(template, transform);
+            ThrowedObject newObject = Instantiate(template, transform);
             newObject.gameObject.SetActive(false);
 
             newObject.Init(target, hitParticle);
@@ -22,14 +22,14 @@ public class ThrowerPool : MonoBehaviour
         }
     }
 
-    public ThrowedItem GetAvailableObject()
+    public ThrowedObject GetAvailableObject()
     {
         return _objectPool.First(p => p.gameObject.activeSelf == false);
     }
 
     public void DisableAllObjects()
     {
-        foreach (ThrowedItem throwedObject in _objectPool)
+        foreach (ThrowedObject throwedObject in _objectPool)
             throwedObject.gameObject.SetActive(false);
     }
 

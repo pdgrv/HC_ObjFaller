@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class RoomItem : SellableItem
 {
     private void Start()
@@ -12,12 +9,8 @@ public class RoomItem : SellableItem
     public void TryRender()
     {
         if (IsBuyed)
-        {
             gameObject.SetActive(true);
-        }
         else
-        {
             gameObject.SetActive(false);
-        }
     }
 }

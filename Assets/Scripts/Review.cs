@@ -1,12 +1,10 @@
 ﻿using Google.Play.Review;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Rewiew : MonoBehaviour
+public class Review : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Game _game;
     [SerializeField] private int _targetLevel = 5;
 
     private ReviewManager _reviewManager;
@@ -14,12 +12,12 @@ public class Rewiew : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameManager.LevelChanged += OnLevelChanged;
+        _game.LevelChanged += OnLevelChanged;
     }
 
     private void OnDisable()
     {
-        _gameManager.LevelChanged -= OnLevelChanged;
+        _game.LevelChanged -= OnLevelChanged;
     }
 
     private void OnLevelChanged(int level)
@@ -29,12 +27,12 @@ public class Rewiew : MonoBehaviour
         {
             _reviewManager = new ReviewManager();
 
-            StartCoroutine(RequestRewiew());
+            StartCoroutine(RequestReview());
         }
 #endif
     }
 
-    private IEnumerator RequestRewiew()
+    private IEnumerator RequestReview()
     {
         var requestFlowOperation = _reviewManager.RequestReviewFlow();
         yield return requestFlowOperation;

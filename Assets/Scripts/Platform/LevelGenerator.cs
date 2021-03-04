@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,8 +14,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _shiftCount;
     [SerializeField] private int _shiftCountIncreasingDivider = 10;
     [SerializeField] private List<Material> _materialPool;
-    [SerializeField] private GameManager _gameManager;
-    [SerializeField] private PlatformAudio _platformAudio;
 
     private Platform _currentTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
@@ -40,6 +37,15 @@ public class LevelGenerator : MonoBehaviour
 
     public event UnityAction<int, int> PlatformCountChanged;
 
+    private void OnEnable()
+    {
+        PlatformEventsHandler.PlatformDestoyed += OnPlatformDestroyed;
+    }
+    private void OnDisable()
+    {
+        PlatformEventsHandler.PlatformDestoyed -= OnPlatformDestroyed;
+    }
+
     private void Update()
     {
         transform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
@@ -55,7 +61,6 @@ public class LevelGenerator : MonoBehaviour
 
     public void StartLevel(int levelNumber)
     {
-        Clean();
         RecalculateParametrs(levelNumber);
         MoveToHighestPoint();
         GenerateLevel();
@@ -127,14 +132,14 @@ public class LevelGenerator : MonoBehaviour
 
     private void AddPlatform(int platformNumber)
     {
-        var newPlatform = Instantiate(_currentTemplate, transform.position + Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
-        newPlatform.Init(this, _gameManager, _platformAudio);
+        var newPlatform = Instantiate(_currentTemplate, transform.position + 
+            Vector3.down * _platformHeight * platformNumber, Quaternion.Euler(0, _angleStep * platformNumber, 0), transform);
         _spawnedPlatforms.Add(newPlatform);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
     }
 
-    public void RemovePlatform(Platform platform)
+    private void OnPlatformDestroyed(Platform platform)
     {
         _spawnedPlatforms.Remove(platform);
         if (_spawnedPlatforms.Count >= 1)
@@ -143,14 +148,5 @@ public class LevelGenerator : MonoBehaviour
         Destroy(platform.gameObject);
 
         PlatformCountChanged?.Invoke(_destroyedPlatforms, _platformCount);
-    }
-
-    [ContextMenu("Clean")]
-    private void Clean()
-    {
-        foreach (Platform platform in _spawnedPlatforms)
-            DestroyImmediate(platform.gameObject);
-
-        _spawnedPlatforms.Clear();
     }
 }

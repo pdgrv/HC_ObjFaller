@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class Game : MonoBehaviour
 {
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private Menu _menu;
@@ -39,22 +38,33 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         _levelGenerator.PlatformCountChanged += OnPlatformCountChanged;
+        PlatformEventsHandler.BadPlatformDestroyed += OnBadPlatformDestroyed;
     }
 
     private void OnDisable()
     {
         _levelGenerator.PlatformCountChanged -= OnPlatformCountChanged;
+        PlatformEventsHandler.BadPlatformDestroyed -= OnBadPlatformDestroyed;
+    }
+
+    private void OnBadPlatformDestroyed()
+    {
+        LoseLevel();
+    }
+    private void OnPlatformCountChanged(int value, int maxValue)
+    {
+        _percentOfLevelPassed = (int)((float)value / maxValue * 100);
+        _platformsCount = maxValue;
+
+        if (value >= maxValue)
+        {
+            WinLevel();
+        }
     }
 
     public void StartLevel()
     {
         LoadScene();
-    }
-
-    public void GameOver()
-    {
-        Debug.Log("Вы проиграли.");
-        LoseLevel();
     }
 
     public void ResumeGame()
@@ -68,17 +78,6 @@ public class GameManager : MonoBehaviour
         _playerMoney.AddMoney(_totalReward * 2);
 
         _menu.ShowCompletePanel(true, _currentLevel - 1, rewardAmount: _totalReward * 3);
-    }
-
-    private void OnPlatformCountChanged(int value, int maxValue)
-    {
-        _percentOfLevelPassed = (int)((float)value / maxValue * 100);
-        _platformsCount = maxValue;
-
-        if (value >= maxValue)
-        {
-            WinLevel();
-        }
     }
 
     private void LoseLevel()
@@ -116,12 +115,6 @@ public class GameManager : MonoBehaviour
     private void LoadProgress()
     {
         _currentLevel = PlayerPrefs.GetInt("Level", 1);
-    }
-
-    [ContextMenu("DeleteSaves")]
-    private void DeleteSaves()
-    {
-        PlayerPrefs.DeleteAll();
     }
 
     private IEnumerator CompleteLevelAfterMovie()
